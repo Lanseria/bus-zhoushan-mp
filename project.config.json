@@ -1,0 +1,35 @@
+{
+  "appid": "wx49db9eb526d437f0",
+  "compileType": "miniprogram",
+  "condition": {},
+  "description": "项目配置文件",
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  },
+  "libVersion": "2.26.2",
+  "packOptions": {
+    "ignore": [
+      {
+        "value": "package-lock.json",
+        "type": "file"
+      }
+    ],
+    "include": []
+  },
+  "projectname": "bus-zhoushan-mp",
+  "setting": {
+    "autoAudits": false,
+    "babelSetting": {
+      "disablePlugins": [],
+      "ignore": [],
+      "outputPath": ""
+    },
+    "packNpmManually": false,
+    "useCompilerPlugins": [
+      "typescript"
+    ]
+  },
+  "simulatorPluginLibVersion": {},
+  "simulatorType": "wechat"
+}

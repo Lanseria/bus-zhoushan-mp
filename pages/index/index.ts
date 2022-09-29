@@ -22,12 +22,12 @@ Page({
     this.searchKeyWords()
   },
   handleClick({ target: { dataset: { linename } } }: any) {
-    console.log(linename)
     const { history } = this.data
     history.push(linename)
+    let set1 = new Set(history)
     wx.setStorage({
       key: 'history',
-      data: history
+      data: Array.from(set1)
     })
     wx.navigateTo({
       url: "/pages/routedetail/index?linename=" + linename

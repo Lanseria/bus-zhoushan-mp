@@ -48,6 +48,7 @@ interface BusRouteDetail {
   up: RouteDetail
 }
 const LOAD = '加载中'
+let interval: number = 0
 // pages/routedetail/index.ts
 Page({
 
@@ -101,6 +102,7 @@ Page({
     })
   },
   async fetchData() {
+    clearInterval(interval)
     const res = await queryLine(this.data.linename)
     this.setData({
       routeDetail: res.data
@@ -114,6 +116,9 @@ Page({
         upOrDown: 'up'
       })
     this.fetchDetail()
+    interval = setInterval(() => {
+      this.fetchDetail()
+    }, 60000)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -153,7 +158,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload() {
-
+    clearInterval(interval)
   },
 
   /**

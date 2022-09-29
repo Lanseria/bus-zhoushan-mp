@@ -1,28 +1,32 @@
 <!--pages/routedetail/index.wxml-->
-<view class="p-24rpx">
-  <view class="flex justify-between">
-    <view class="flex flex-col items-start m-12rpx">
-      <view class="flex items-center mb-8rpx">
-        <text class="border-solid border-1rpx p-4rpx text-green-600 border-green-600">起</text>
-        <text class="ml-20rpx">{{ routeDetail[upOrDown].startStation }}</text>
+<view class="p-24rpx flex flex-col h-100vh box-border">
+  <view class="flex-shrink-0">
+    <view class="flex justify-between">
+      <view class="flex flex-col items-start m-12rpx">
+        <view class="flex items-center mb-8rpx">
+          <text class="border-solid border-1rpx p-4rpx text-green-600 border-green-600">起</text>
+          <text class="ml-20rpx">{{ routeDetail[upOrDown].startStation }}</text>
+        </view>
+        <view class="flex items-center mb-8rpx">
+          <text class="border-solid border-1rpx p-4rpx text-red-600 border-red-600">终</text>
+          <text class="ml-20rpx">{{ routeDetail[upOrDown].endStation }}</text>
+        </view>
+        <view>首发：{{ routeDetail[upOrDown].startFirst }} 末班：{{ routeDetail[upOrDown].startLast }}</view>
       </view>
-      <view class="flex items-center mb-8rpx">
-        <text class="border-solid border-1rpx p-4rpx text-red-600 border-red-600">终</text>
-        <text class="ml-20rpx">{{ routeDetail[upOrDown].endStation }}</text>
+      <view class="flex">
+        <t-icon class="p-20rpx" name="swap" size="80rpx" bind:click="handleSwap" />
+        <t-icon class="p-20rpx" name="refresh" size="80rpx" bind:click="fetchDetail" />
       </view>
-      <view>首发：{{ routeDetail[upOrDown].startFirst }} 末班：{{ routeDetail[upOrDown].startLast }}</view>
     </view>
-    <view class="flex">
-      <t-icon class="p-20rpx" name="swap" size="80rpx" bind:click="handleSwap" />
-      <t-icon class="p-20rpx" name="refresh" size="80rpx" bind:click="fetchDetail" />
-    </view>
+    <t-divider></t-divider>
   </view>
-  <t-divider></t-divider>
-  <view class="px-4 py-8">
+  <view class="px-4 py-8 flex-1 overflow-y-scroll">
     <t-steps layout="vertical" theme="dot">
       <t-step-item wx:for="{{routeDetail[upOrDown].stationList}}" wx:for-item="item" wx:key="prefix" title="{{item.stationName}}">
         <view slot="extra">
-          <view wx:for="{{groupsVl[item.stationOrder]}}" wx:for-item="it" wx:key="prefix">
+          <view wx:for="{{groupsVl[item.stationOrder]}}" wx:for-item="it" wx:key="prefix" class="text-left flex items-center {{it.isArriveStation?'text-red-600':'text-green-600'}}">
+            <t-icon wx:if="{{it.isArriveStation}}" name="caret-right-small" size="40rpx"  />
+            <t-icon wx:else name="caret-up-small" size="40rpx"  />
             {{ it.plateNumber }}
             <text wx:if="{{it.isArriveStation}}">已到站</text>
             <text wx:else>未到站，距离{{ it.distance }}米</text>

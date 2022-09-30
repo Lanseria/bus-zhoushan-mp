@@ -24,12 +24,12 @@
     <t-steps layout="vertical" theme="dot">
       <t-step-item wx:for="{{routeDetail[upOrDown].stationList}}" wx:for-item="item" wx:key="prefix" title="{{item.stationName}}">
         <view slot="extra">
-          <view wx:for="{{groupsVl[item.stationOrder]}}" wx:for-item="it" wx:key="prefix" class="text-left flex items-center {{it.isArriveStation?'text-red-600':'text-green-600'}}">
-            <t-icon wx:if="{{it.isArriveStation}}" name="caret-right-small" size="40rpx"  />
-            <t-icon wx:else name="caret-up-small" size="40rpx"  />
+          <view wx:for="{{groupsVl[item.stationOrder]}}" wx:for-item="it" wx:key="prefix" class="text-left flex items-center text-size-28rpx {{it.isArriveStation?'text-red-600':'text-green-600'}}">
+            <t-icon wx:if="{{it.isArriveStation}}" name="caret-up-small" size="40rpx"  />
+            <t-icon wx:else name="arrow-down" size="40rpx"  />
             {{ it.plateNumber }}
             <text wx:if="{{it.isArriveStation}}">已到站</text>
-            <text wx:else>未到站，距离{{ it.distance }}米</text>
+            <text wx:else>未到站，距离下站{{ it.distance }}米</text>
           </view>
         </view>
       </t-step-item>

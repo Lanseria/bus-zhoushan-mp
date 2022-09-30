@@ -84,9 +84,14 @@ Page({
     groupsVl: {}
   },
   handleSwap() {
+    clearInterval(interval)
     this.setData({
       upOrDown: this.data.upOrDown === 'down' ? 'up' : 'down'
     })
+    this.fetchDetail()
+    interval = setInterval(() => {
+      this.fetchDetail()
+    }, 60000)
   },
   async fetchDetail() {
     const res = await details(this.data.routeDetail[this.data.upOrDown].id)

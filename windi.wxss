@@ -61,6 +61,10 @@
 .h-100vh {
   height: 100vh;
 }
+.text-size-28rpx {
+  font-size: 28rpx;
+  line-height: 1;
+}
 .m-12rpx {
   margin: 12rpx;
 }

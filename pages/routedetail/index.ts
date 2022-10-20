@@ -83,15 +83,18 @@ Page({
     crtBusOrderId: [] as number[],
     groupsVl: {}
   },
-  handleSwap() {
+  intervalDetail() {
     clearInterval(interval)
-    this.setData({
-      upOrDown: this.data.upOrDown === 'down' ? 'up' : 'down'
-    })
     this.fetchDetail()
     interval = setInterval(() => {
       this.fetchDetail()
-    }, 60000)
+    }, 30000)
+  },
+  handleSwap() {
+    this.setData({
+      upOrDown: this.data.upOrDown === 'down' ? 'up' : 'down'
+    })
+    this.intervalDetail()
   },
   async fetchDetail() {
     const res = await details(this.data.routeDetail[this.data.upOrDown].id)
@@ -107,7 +110,6 @@ Page({
     })
   },
   async fetchData() {
-    clearInterval(interval)
     const res = await queryLine(this.data.linename)
     this.setData({
       routeDetail: res.data
@@ -120,10 +122,7 @@ Page({
       this.setData({
         upOrDown: 'up'
       })
-    this.fetchDetail()
-    interval = setInterval(() => {
-      this.fetchDetail()
-    }, 60000)
+    this.intervalDetail()
   },
   /**
    * 生命周期函数--监听页面加载

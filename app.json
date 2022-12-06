@@ -1,7 +1,9 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/routedetail/index"
+    "pages/routedetail/index",
+    "pages/oil/index",
+    "pages/table/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -18,6 +20,10 @@
     "t-divider": "tdesign-miniprogram/divider/divider",
     "t-steps": "tdesign-miniprogram/steps/steps",
     "t-step-item": "tdesign-miniprogram/steps/step-item",
-    "t-icon": "tdesign-miniprogram/icon/icon"
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
+    "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item",
+    "t-tag": "tdesign-miniprogram/tag/tag",
+    "t-check-tag": "tdesign-miniprogram/tag/check-tag"
   }
 }

@@ -5,8 +5,8 @@
   "main": "app.ts",
   "scripts": {
     "windicss": "windicss",
-    "wf": "watch -p 'pages/**/*.wxml' -c 'npm run w'",
-    "w": "npm run windicss 'pages/**/*.wxml' -o /windi.wxss --config windi.config.js -d && mv windi.css windi.wxss"
+    "cw": "chokidar \"pages/**/*.wxml\" -c \"npm run w\"",
+    "w": "npm run windicss \"pages/**/*.wxml\" -o /windi.wxss --config windi.config.js -d && mv windi.css windi.wxss"
   },
   "repository": {
     "type": "git",
@@ -16,13 +16,13 @@
   "author": "lanseria",
   "license": "MIT",
   "devDependencies": {
+    "chokidar-cli": "^3.0.0",
     "miniprogram-api-typings": "^3.6.0",
-    "watch-cli": "^0.2.3",
     "windicss": "^3.5.6"
   },
   "dependencies": {
-    "tdesign-miniprogram": "^0.21.2",
-    "dayjs": "^1.11.5",
+    "tdesign-miniprogram": "^0.28.0",
+    "dayjs": "^1.11.6",
     "wx-axios-promise": "^2.4.1"
   }
 }

@@ -7,4 +7,9 @@
     <t-cell wx:for="{{history}}" wx:for-item="item" wx:key="prefix" title="{{item}}" data-linename="{{item}}" hover
       bind:click="handleClick" />
   </view>
+  <t-tab-bar value="{{activeTab}}" bindchange="onChange" theme="tag" split="{{false}}">
+    <t-tab-bar-item wx:for="{{tabList}}" wx:key="index" value="{{item.value}}" icon="{{item.icon}}">
+      {{item.label}}
+    </t-tab-bar-item>
+  </t-tab-bar>
 </view>

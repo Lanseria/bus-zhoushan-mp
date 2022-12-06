@@ -68,6 +68,9 @@
 .m-12rpx {
   margin: 12rpx;
 }
+.mt-2 {
+  margin-top: 0.5rem;
+}
 .mb-8rpx {
   margin-bottom: 8rpx;
 }

@@ -8,7 +8,6 @@ interface BusItem {
   plateNumber: string
   lat: number
   isArriveStation: number
-
 }
 interface BusStatus {
   busAverageSpeed: number
@@ -51,7 +50,9 @@ const LOAD = '加载中'
 let interval: number = 0
 // pages/routedetail/index.ts
 Page({
-
+  options: {
+    styleIsolation: 'apply-shared',
+  },
   /**
    * 页面的初始数据
    */
@@ -85,16 +86,14 @@ Page({
   },
   intervalDetail() {
     clearInterval(interval)
-    this.fetchDetail()
     interval = setInterval(() => {
       this.fetchDetail()
-    }, 30000)
+    }, 10000)
   },
   handleSwap() {
     this.setData({
       upOrDown: this.data.upOrDown === 'down' ? 'up' : 'down'
     })
-    this.intervalDetail()
   },
   async fetchDetail() {
     const res = await details(this.data.routeDetail[this.data.upOrDown].id)
@@ -104,6 +103,7 @@ Page({
     })
     ///
     const vL = vehicleDetail.list
+    console.log(vL)
     const groups = vL.length ? _.groupBy(vL, 'vehicleOrder') : {}
     this.setData({
       groupsVl: groups
@@ -122,6 +122,7 @@ Page({
       this.setData({
         upOrDown: 'up'
       })
+    this.fetchDetail()
     this.intervalDetail()
   },
   /**

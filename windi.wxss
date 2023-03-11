@@ -1,3 +1,7 @@
+.bg-gray-200 {
+  --tw-bg-opacity: 1;
+  background-color: rgba(229, 231, 235, var(--tw-bg-opacity));
+}
 .border-green-600 {
   --tw-border-opacity: 1;
   border-color: rgba(5, 150, 105, var(--tw-border-opacity));
@@ -82,6 +86,9 @@
 }
 .p-24rpx {
   padding: 24rpx;
+}
+.p-4 {
+  padding: 1rem;
 }
 .p-4rpx {
   padding: 4rpx;

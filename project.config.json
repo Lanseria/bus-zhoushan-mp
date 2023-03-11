@@ -28,7 +28,8 @@
     "packNpmManually": false,
     "useCompilerPlugins": [
       "typescript"
-    ]
+    ],
+    "condition": false
   },
   "simulatorPluginLibVersion": {},
   "simulatorType": "wechat"

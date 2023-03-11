@@ -1,9 +1,7 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/routedetail/index",
-    "pages/oil/index",
-    "pages/table/index"
+    "pages/routedetail/index"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -13,7 +11,6 @@
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "t-navbar": "tdesign-miniprogram/navbar/navbar",
     "t-button": "tdesign-miniprogram/button/button",
     "t-search": "tdesign-miniprogram/search/search",
     "t-cell": "tdesign-miniprogram/cell/cell",
@@ -21,9 +18,7 @@
     "t-steps": "tdesign-miniprogram/steps/steps",
     "t-step-item": "tdesign-miniprogram/steps/step-item",
     "t-icon": "tdesign-miniprogram/icon/icon",
-    "t-tab-bar": "tdesign-miniprogram/tab-bar/tab-bar",
-    "t-tab-bar-item": "tdesign-miniprogram/tab-bar/tab-bar-item",
-    "t-tag": "tdesign-miniprogram/tag/tag",
-    "t-check-tag": "tdesign-miniprogram/tag/check-tag"
+    "t-empty": "tdesign-miniprogram/empty/empty",
+    "t-notice-bar": "tdesign-miniprogram/notice-bar/notice-bar"
   }
 }

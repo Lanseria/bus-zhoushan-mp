@@ -94,6 +94,7 @@ Page({
     this.setData({
       upOrDown: this.data.upOrDown === 'down' ? 'up' : 'down'
     })
+    this.fetchDetail()
   },
   async fetchDetail() {
     const res = await details(this.data.routeDetail[this.data.upOrDown].id)

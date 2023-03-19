@@ -1,17 +1,13 @@
 {
   "editor.formatOnSave": true,
-  "editor.tabSize": 2,
-  "files.associations": {
-    "*.vue": "vue",
-    "*.css": "css",
-    "*.cjson": "jsonc",
-    "*.wxss": "css",
-    "*.wxs": "javascript",
-    "*.wxml": "html"
-  },
+  "Codegeex.EnableExtension": false,
   "cSpell.words": [
-    "tdesign",
+    "asqz",
+    "vant",
+    "weapp",
+    "windi",
     "windicss",
-    "zhoushan"
+    "wxml",
+    "wxss"
   ]
 }

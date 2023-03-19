@@ -1,0 +1,37 @@
+<!--pages/ordersubmit/index.wxml-->
+<view class="pb-200rpx bg-light-400 min-h-100vh">
+
+  <van-card num="1" price="{{formData.amount}}" desc="{{'订单编号：'+formData.goodsOrderId}}" title="{{formData.goodsName}}"
+    thumb="{{ formData.coverUrl }}" tag="{{tools.payTextMap[formData.status]}}">
+    <view slot="tags">
+    </view>
+  </van-card>
+  <!-- <view bindtap="handleTest">test</view> -->
+  <van-submit-bar price="{{ price }}" button-text="支付订单" disabled="{{formData.status!=='0'}}" bind:submit="onSubmit" />
+</view>
+
+<van-overlay show="{{ showQrcode }}">
+  <view class="flex justify-center items-center h-full">
+    <view class="bg-white h-50vh w-90vw rounded-20rpx flex flex-col justify-evenly items-center">
+      <view>
+        <view class="text-size-50rpx">
+          <van-icon name="passed" color="green" />支付成功
+        </view>
+        <view class="mt-20rpx">微信扫一扫学习考证问题随时答疑</view>
+      </view>
+      <image class="mb-20rpx h-300rpx w-300rpx" show-menu-by-longpress="{{true}}" src="{{classForm.wxqQrCodeUrl}}">
+      </image>
+      <view class="flex flex-col items-center">
+        <view class="flex justify-evenly">
+          <view class="px-30rpx py-20rpx bg-blue-300 rounded-20rpx text-white" bindtap="handleBack">
+            我已截屏保存并返回
+          </view>
+          <view class="ml-20rpx px-30rpx py-20rpx bg-gray-300 rounded-20rpx text-white" bindtap="handleBack">
+            返回
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</van-overlay>
+<wxs src="/common/comm.wxs" module="tools" />

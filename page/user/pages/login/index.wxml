@@ -1,0 +1,26 @@
+<!--pages/login/index.wxml-->
+<view class="bg-white min-h-100vh flex items-center flex-col">
+
+  <view class="my-100rpx">
+    <image class="h-200rpx w-200rpx" src="/static/image/logo.png"></image>
+  </view>
+
+  <view class="px-24rpx w-full box-border">
+    <view class="mt-10rpx">
+      <van-button type="primary" bind:click="wxLogin" block disabled="{{!checked}}">
+        微信授权登录
+      </van-button>
+    </view>
+    <view class="mt-10rpx">
+      <van-button block bind:click="wxBack">返回</van-button>
+    </view>
+  </view>
+
+  <view class="mt-20rpx flex justify-center">
+    <van-checkbox icon-size="48rpx" shape="square" label-disabled value="{{ checked }}" bind:change="onChange">
+      <view class="text-size-24rpx" bindtap="agree">我已阅读并同意</view>
+      <view class="text-size-24rpx"><text class="text-blue-500" bindtap="handlePrivacy">《用户服务协议》及《隐私政策》</text></view>
+    </van-checkbox>
+  </view>
+
+</view>

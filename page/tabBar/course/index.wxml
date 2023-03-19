@@ -1,0 +1,6 @@
+<scroll-view class="page-scroll-view" scroll-y type="list">
+
+
+</scroll-view>
+
+<wxs src="/common/comm.wxs" module="tools" />

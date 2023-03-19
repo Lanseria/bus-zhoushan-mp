@@ -1,0 +1,208 @@
+/**
+ * date 为日期Date类型，
+ * 日期格式化信息 matter 定义 
+ * 年:yyyy/YYYY/yy/YY
+ * 月:mm/MM (不足两位用0补全)
+ * 日:dd/DD (不足两位用0补全)
+ * 时:hh/HH (24小时制)
+ * 分:mi/MI (不足两位用0补全)
+ * 秒:ss/SS (不足两位用0补全)
+ */
+var formatDate = function (d, matter = 'YYYY/MM/DD') {
+  d = d || ''
+  var dd = d.replace(getRegExp('-', 'g'), '/')
+  var date = getDate(dd)
+  var year = date.getFullYear().toString();
+  var month = (date.getMonth() + 1).toString();
+  month = (month.length > 1) ? month : ('0' + month);
+  var day = date.getDate().toString();
+  day = (day.length > 1) ? day : ('0' + day);
+  var hours = date.getHours().toString();
+  hours = (hours.length > 1) ? hours : ('0' + hours);
+  var minutes = date.getMinutes().toString();
+  minutes = (minutes.length > 1) ? minutes : ('0' + minutes);
+  var seconds = date.getSeconds().toString();
+  seconds = (seconds.length > 1) ? seconds : ('0' + seconds);
+  var retVal = matter;
+  if (matter.indexOf('yyyy') >= 0) {
+    retVal = retVal.replace('yyyy', year);
+  } else if (matter.indexOf('YYYY') >= 0) {
+    retVal = retVal.replace('YYYY', year);
+  } else if (matter.indexOf('yy') >= 0) {
+    retVal = retVal.replace('yy', year.substring(2));
+  } else if (matter.indexOf('YY') >= 0) {
+    retVal = retVal.replace('YY', year.substring(2));
+  }
+
+
+  if (matter.indexOf('mm') > 0) {
+    retVal = retVal.replace('mm', month);
+  } else if (matter.indexOf('MM') > 0) {
+    retVal = retVal.replace('MM', month);
+  }
+
+
+  if (matter.indexOf('dd') > 0) {
+    retVal = retVal.replace('dd', day);
+  } else if (matter.indexOf('DD') > 0) {
+    retVal = retVal.replace('DD', day);
+  }
+
+
+  if (matter.indexOf('hh') > 0) {
+    retVal = retVal.replace('hh', hours);
+  } else if (matter.indexOf('HH') > 0) {
+    retVal = retVal.replace('HH', hours);
+  }
+
+
+  if (matter.indexOf('mi') > 0) {
+    retVal = retVal.replace('mi', minutes);
+  } else if (matter.indexOf('MI') > 0) {
+    retVal = retVal.replace('MI', minutes);
+  }
+
+
+  if (matter.indexOf('ss') > 0) {
+    retVal = retVal.replace('ss', seconds);
+  } else if (matter.indexOf('SS') > 0) {
+    retVal = retVal.replace('SS', seconds);
+  }
+  return retVal;
+}
+module.exports = {
+  formatDate: formatDate,
+  returnStr: function (str) {
+    return str.replace(getRegExp('↵', 'g'), '\n')
+  },
+  classShowQrCode: function (item, type) {
+    if (type === 'userform') {
+      if (item.status === '2') {
+        if (item.isFree === '2') {
+          return true
+        }
+        if (item.isFree === '1') {
+          if (item.payStatus === '2') {
+            return true
+          }
+        }
+        return false
+      }
+    } else {
+      return false
+    }
+  },
+  typeMap: {
+    '1': '初训',
+    '2': '复训',
+    '3': '换证',
+    '4': '再培训',
+  },
+  isOnlineMap: {
+    '1': '线下预约',
+    '2': '线上取证',
+  },
+  isOnlineColorMap: {
+    '1': 'warning',
+    '2': 'primary',
+  },
+  formStatusMap: {
+    '1': '审核中',
+    '2': '审核通过',
+    '3': '审核驳回',
+  },
+
+  classPayStatusTextMap: {
+    '1': '立即报名',
+    '2': '已报名',
+    '3': '重新报名',
+  },
+
+  payTextMap: {
+    '0': '待支付',
+    '1': '处理中',
+    '2': '已支付',
+  },
+  modeMap: {
+    '1': '网授',
+    '2': '面授',
+    '3': '网授+面授',
+  },
+  // 1-单选题；2-多选题；3-判断题；4-填空题；5-问答题
+  quesTypeMap: {
+    '1': '单选题',
+    '2': '多选题',
+    '3': '判断题',
+    '4': '填空题',
+    '5': '问答题',
+  },
+
+  userStatusMap: {
+    '1': '未认证',
+    '2': '认证通过',
+  },
+
+  sexMap: {
+    '0': '未知',
+    '1': '男',
+    '2': '女',
+  },
+  videoRate: [1.0, 1.25, 1.5, 2.0],
+
+  examStatusMap: {
+    '1': '未通过',
+    '2': '通过',
+    '3': '已预约'
+  },
+
+  examEnableMap: {
+    '1': '未达成',
+    '2': '达成',
+  },
+
+  examTypeMap: {
+    '1': '模拟考',
+    '2': '正式考',
+  },
+
+
+  examIndepMap: {
+    '1': '关联',
+    '2': '独立',
+  },
+
+  examIsFreeMap: {
+    '1': '收费',
+    '2': '免费',
+  },
+
+  courseFaceStatusMap: {
+    '1': '未学习',
+    '2': '已学习',
+  },
+  courseFaceTypeMap: {
+    '1': '必修',
+    '2': '选修',
+  },
+  courseFacePropMap: {
+    '1': '理论',
+    '2': '实操',
+  },
+  orderTypeMap: {
+    '1': '班级',
+    '2': '考试',
+  },
+  invoiceTypeMap: {
+    '1': '增值税电子普通发票',
+    '2': '增值税专用发票'
+  },
+  invoiceTitleTypeMap: {
+    '1': '企业',
+    '2': '个人/其他'
+  },
+  invoiceStatusMap: {
+    '1': '发起审核',
+    '2': '审核通过',
+    '3': '审核驳回',
+  }
+};

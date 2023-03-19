@@ -1,0 +1,67 @@
+<!--components/classes_item/index.wxml-->
+<view class="mb-12px box-border p-10rpx flex w-full shadow-border rounded-10px bg-white relative">
+  <!-- <text
+    class="absolute top-11rpx left-11rpx bg-green-500 text-light-50 text-size-24rpx px-5px py-5rpx rounded-tl-20rpx rounded-br-20rpx">{{tools.typeMap[item.type]}}</text> -->
+  <image class="h-90px w-160px flex-none rounded-10px" src="{{item.coverUrl}}" mode="aspectFit" />
+  <view class="flex flex-col flex-1 ml-4px my-2px justify-between">
+    <view class="text-size-12px van-multi-ellipsis--l2">{{item.name}}</view>
+    <!-- <view wx:if="{{type==='userform'}}" class="text-size-24rpx van-multi-ellipsis--l2">{{item.classesName}}</view> -->
+    <view class="text-size-8px">
+      <text>{{item.categoryName}}</text>
+      <text class="text-green-500 font-bold">[{{tools.typeMap[item.type]}}] </text>
+    </view>
+    <view class="text-size-8px text-gray-500">
+      <view>费用：
+        <text wx:if="{{item.isFree==='2'}}">免费</text>
+        <text wx:else>{{item.price}}元</text>
+      </view>
+      <view>
+        取证方式：<text class="text-orange-500 {{item.isOnline==='2'?'text-blue-500':'text-orange-500'}}">{{tools.isOnlineMap[item.isOnline]}}</text>
+      </view>
+      <view>授课方式：{{tools.modeMap[item.mode]}}</view>
+      <view wx:if="{{type==='classes'}}">报名人数：{{item.studentNum||0}}人</view>
+      <view wx:if="{{type==='classes'}}">报名时间：{{tools.formatDate(item.enterStartTime)}} 至
+        {{tools.formatDate(item.enterEndTime)}}</view>
+      <view wx:if="{{type==='userform'}}">报名时间：{{tools.formatDate(item.submitTime)}}</view>
+    </view>
+  </view>
+  <!-- userform -->
+  <view class="absolute top-0 bottom-0 left-0 right-0" wx:if="{{type==='userform'}}">
+    <view wx:if="{{item.status==='1'}}" class="absolute bottom-10px right-10px text-size-8px bg-yellow-400 text-white px-5px py-4px rounded-10px">
+      {{tools.formStatusMap[item.status]}}
+    </view>
+    <view wx:if="{{item.status==='2'}}" class="absolute bottom-10px right-10px text-size-8px bg-green-400 text-white px-5px py-4px rounded-10px">
+      {{tools.formStatusMap[item.status]}}
+    </view>
+    <view wx:if="{{item.status==='3'}}" class="absolute bottom-10px right-10px text-size-8px bg-red-400 text-white px-5px py-4px rounded-10px">
+      {{tools.formStatusMap[item.status]}}
+    </view>
+
+    <view class="absolute bottom-10px left-10px text-size-8px text-white">
+      <view wx:if="{{item.isFree==='2'}}" class="bg-green-400 px-5px py-4px rounded-10px">免费</view>
+      <view wx:else>
+        <view wx:if="{{item.status==='2'}}">
+          <view wx:if="{{item.payStatus==='0'}}" class="bg-red-400 px-5px py-4px rounded-10px">
+            {{tools.payTextMap[item.payStatus]}}
+          </view>
+          <view wx:if="{{item.payStatus==='1'}}" class="bg-yellow-400 px-5px py-4px rounded-10px">
+            {{tools.payTextMap[item.payStatus]}}
+          </view>
+          <view wx:if="{{item.payStatus==='2'}}" class="bg-green-400 px-5px py-4px rounded-10px">
+            {{tools.payTextMap[item.payStatus]}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="absolute top-36px right-20rpx" wx:if="{{tools.classShowQrCode(item,type)}}" catchtap="onClickShow">
+    <van-icon name="qr" size="25px" />
+    <van-overlay show="{{ showQrCode }}" catchtap="onClickHide">
+      <view class="flex justify-center items-center h-full">
+        <image class="h-250px w-250px" show-menu-by-longpress="{{true}}" src="{{item.wxqQrCodeUrl}}" />
+      </view>
+    </van-overlay>
+  </view>
+</view>
+<wxs src="/common/comm.wxs" module="tools" />

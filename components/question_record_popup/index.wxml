@@ -1,0 +1,14 @@
+<!--components/question_record_popup/index.wxml-->
+<van-popup show="{{ showSelectQues }}" position="bottom" bind:close="onClose">
+  <view class="pt-50rpx px-50rpx text-size-40rpx">题目记录</view>
+  <view class="h-50vh overflow-y-scroll flex justify-center pt-60rpx">
+    <view class="w-full px-40rpx grid grid-cols-5 gap-30rpx justify-items-center">
+      <view
+        class="flex justify-center items-center p-12rpx h-50rpx w-50rpx rounded-50rpx border-solid text-size-30rpx border-2rpx {{item.isOver?'bg-blue-100 text-blue-400':'bg-white text-gray-500'}} {{currentNum===item.num?'border-blue-400':''}}"
+        wx:for="{{questionList}}" wx:for-item="item" wx:key="id" bindtap="handleDetail" data-id="{{item.id}}"
+        data-num="{{item.num}}">
+        <view>{{item.num}}</view>
+      </view>
+    </view>
+  </view>
+</van-popup>

@@ -1,28 +1,30 @@
 {
-  "name": "bus-zhoushan-mp",
+  "name": "zhoushan-bus",
   "version": "1.0.0",
-  "description": "舟山公交查询",
-  "main": "app.ts",
+  "description": "我的公共查询",
+  "main": "app.js",
   "scripts": {
     "windicss": "windicss",
-    "cw": "chokidar \"pages/**/*.wxml\" -c \"npm run w\"",
-    "w": "npm run windicss \"pages/**/*.wxml\" -o /windi.wxss --config windi.config.js -d && mv windi.css windi.wxss"
+    "cw": "chokidar \"page/**/*.wxml\" \"components/**/*.wxml\" -c \"npm run w\"",
+    "w": "npm run windicss \"page/**/*.wxml\" \"components/**/*.wxml\" -o /windi.wxss --config windi.config.js -d && mv windi.css windi.wxss"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:Lanseria/bus-zhoushan-mp.git"
+    "url": "ssh://git@122.112.189.125:18022/lanseria/asqz-mp.git"
   },
   "keywords": [],
-  "author": "lanseria",
-  "license": "MIT",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vant/weapp": "^1.10.14",
+    "axios": "^0.21.4",
+    "axios-miniprogram-adapter": "^0.3.5",
+    "dayjs": "^1.11.7",
+    "tdesign-miniprogram": "^1.0.3",
+    "wx-axios-promise": "^2.4.1"
+  },
   "devDependencies": {
     "chokidar-cli": "^3.0.0",
-    "miniprogram-api-typings": "^3.6.0",
     "windicss": "^3.5.6"
-  },
-  "dependencies": {
-    "tdesign-miniprogram": "^0.28.0",
-    "dayjs": "^1.11.6",
-    "wx-axios-promise": "^2.4.1"
   }
 }

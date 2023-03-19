@@ -1,0 +1,36 @@
+<!--components/course_rate/index.wxml-->
+
+<view class="p-24rpx border-t-light-900 border-solid border-l-0 border-b-0 border-r-0 border-t-2rpx">
+  <view class="flex justify-center flex-col items-center mb-20rpx">
+    <view class="text-size-20rpx text-gray-500 mb-10rpx">点击星星评分</view>
+    <van-rate model:value="{{ score }}" size="{{ 25 }}" color="#ffd21e" void-icon="star" void-color="#eee" bind:change="onChange" />
+  </view>
+  <van-cell-group inset>
+    <van-field title-width="80rpx" model:value="{{ content }}" label="评价" type="textarea" placeholder="请输入您的评价" autosize border="{{ false }}">
+    </van-field>
+  </van-cell-group>
+  <view class="mt-20rpx px-35rpx">
+    <van-button type="info" block bind:click="handleSubmit">提交</van-button>
+  </view>
+  <van-divider contentPosition="center">大家评论</van-divider>
+
+  <van-empty wx:if="{{commentList.length===0}}" description="暂无评论" />
+  <view wx:for="{{commentList}}" wx:key="id" wx:for-item="item" class="px-20rpx">
+    <view class="flex">
+      <image class="h-80rpx w-80rpx rounded-1" src="{{item.avatar}}"></image>
+      <view class="ml-20rpx flex flex-col justify-around">
+        <view>{{item.userName}}</view>
+        <view class="text-size-20rpx text-gray-400">{{item.createTime}} 评价</view>
+      </view>
+    </view>
+    <view class="mt-20rpx text-size-28rpx">
+      <text class="text-gray-500">评价：</text>
+      <text wx:if="{{item.content}}">{{item.content}}</text>
+      <text wx:else class="text-gray-400">此用户没有填写评价</text>
+    </view>
+    <view class="mt-20rpx text-size-28rpx"><text class="text-gray-500">评分：</text>
+      <van-rate size="28rpx" readonly value="{{ item.score }}" />
+    </view>
+    <van-divider></van-divider>
+  </view>
+</view>

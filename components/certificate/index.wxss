@@ -1,0 +1,4 @@
+/* components/certicate/index.wxss */
+.grid_cols_125px_1fr {
+  grid-template-columns: 125px 1fr;
+}

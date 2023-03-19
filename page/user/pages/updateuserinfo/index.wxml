@@ -1,0 +1,46 @@
+<!--pages/updateUserInfo/index.wxml-->
+<view class="layout">
+  <view class="flex justify-evenly mt-90rpx">
+    <view class="h-128rpx w-256rpx bg-light-200 flex justify-start">
+      <button class="h-128rpx w-256rpx p-0 flex justify-start bg-light-200" open-type="chooseAvatar"
+        bind:chooseavatar="onChooseAvatar">
+        <image class="h-128rpx w-128rpx" src="{{avatar}}"></image>
+        <view class="flex flex-col items-center justify-center flex-1">
+          <van-icon name="plus" />
+          <view class="text-size-20rpx mt-15rpx">添加头像</view>
+        </view>
+      </button>
+    </view>
+    <!-- 
+    <view class="h-128rpx w-256rpx bg-light-200 flex justify-start">
+      <button class="h-128rpx w-256rpx p-0 flex justify-start bg-light-200" open-type="chooseAvatar"
+        bind:chooseavatar="onChoosePortrait">
+        <image class="h-128rpx w-100rpx" src="{{portrait}}"></image>
+        <view class="flex flex-col items-center justify-center flex-1">
+          <van-icon name="plus" />
+          <view class="text-size-20rpx mt-15rpx">添加一寸照</view>
+        </view>
+      </button>
+    </view> -->
+  </view>
+  <view class="px-2 mt-48rpx">
+
+    <van-cell-group>
+      <van-field label="昵称" model:value="{{ nickname }}" placeholder="请输入昵称" border="{{ false }}" />
+      <van-field label="性别" readonly="{{true}}" value="{{tools.sexMap[userInfo.sex||0]}}" border="{{ false }}"
+        bind:click-input="onOpen" />
+      <van-field label="公司" model:value="{{ company }}" placeholder="请输入公司名称" border="{{ false }}" />
+      <van-field label="职称" model:value="{{ jobTitle }}" placeholder="请输入职称" border="{{ false }}" />
+      <van-field label="邮箱" model:value="{{ email }}" placeholder="请输入邮箱" border="{{ false }}" />
+    </van-cell-group>
+    <view class="mt-2">
+      <van-button type="primary" block bind:click="handleUpdate">更新信息</van-button>
+    </view>
+    <view class="mt-2">
+      <van-button block bind:click="cancellationAccount">注销账号</van-button>
+    </view>
+  </view>
+  <van-action-sheet show="{{ show }}" actions="{{ actions }}" bind:close="onClose" bind:select="onSelect" />
+</view>
+
+<wxs src="/common/comm.wxs" module="tools" />

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "公交查询",
+  "usingComponents": {
+    "van-search": "@vant/weapp/search/index"
+  },
+  "enablePullDownRefresh": true
+}

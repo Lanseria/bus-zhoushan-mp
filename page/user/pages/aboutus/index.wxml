@@ -1,0 +1,13 @@
+<!--pages/aboutus/index.wxml-->
+<view class="p-40rpx flex flex-col h-screen box-border">
+  <view class="flex flex-col h-400rpx">
+    <view>应提供电话、电子邮箱等多种服务途径，支持7d每天24h的在线客服和电话服务，可采用人工应答或智能应答等服务方式。</view>
+    <text>邮箱：houzhe@csafety.cn</text>
+    <view>电话：4008-169-159</view>
+    <view>质量监督电话：2561903</view>
+    <view>中央网信办违法和不良信息举报中心http://www.12377.cn</view>
+  </view>
+  <view class="flex-1 w-full overflow-y-scroll">
+    <button type="default" open-type="contact">微信客服咨询</button>
+  </view>
+</view>

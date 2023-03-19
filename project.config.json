@@ -1,23 +1,52 @@
 {
   "appid": "wx49db9eb526d437f0",
+  "cloudfunctionRoot": "cloudfunctions/",
   "compileType": "miniprogram",
   "condition": {},
-  "description": "项目配置文件",
+  "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "editorSetting": {
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "libVersion": "2.26.1",
+  "libVersion": "2.24.6",
   "packOptions": {
     "ignore": [
       {
         "value": "package-lock.json",
         "type": "file"
+      },
+      {
+        "value": "miniprogram_npm/@vant/weapp/calendar",
+        "type": "folder"
+      },
+      {
+        "value": "miniprogram_npm/@vant/weapp/uploader",
+        "type": "folder"
+      },
+      {
+        "value": "miniprogram_npm/@vant/weapp/skeleton",
+        "type": "folder"
+      },
+      {
+        "value": "miniprogram_npm/@vant/weapp/datetime-picker",
+        "type": "folder"
+      },
+      {
+        "value": "miniprogram_npm/@vant/weapp/grid",
+        "type": "folder"
+      },
+      {
+        "value": "miniprogram_npm/@vant/weapp/image",
+        "type": "folder"
+      },
+      {
+        "value": "miniprogram_npm/@vant/weapp/cascader",
+        "type": "folder"
       }
     ],
     "include": []
   },
-  "projectname": "bus-zhoushan-mp",
+  "projectname": "asqz-mp",
   "setting": {
     "autoAudits": false,
     "babelSetting": {
@@ -25,12 +54,31 @@
       "ignore": [],
       "outputPath": ""
     },
+    "checkInvalidKey": true,
+    "coverView": true,
+    "disableUseStrict": false,
+    "enhance": true,
+    "es6": true,
+    "ignoreDevUnusedFiles": false,
+    "ignoreUploadUnusedFiles": false,
+    "minified": true,
+    "minifyWXML": true,
+    "minifyWXSS": true,
+    "newFeature": false,
+    "nodeModules": false,
     "packNpmManually": false,
-    "useCompilerPlugins": [
-      "typescript"
-    ],
+    "packNpmRelationList": [],
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "showES6CompileOption": false,
+    "showShadowRootInWxmlPanel": true,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "urlCheck": true,
+    "useCompilerPlugins": false,
+    "useIsolateContext": true,
+    "useStaticServer": true,
+    "userConfirmedBundleSwitch": false,
     "condition": false
-  },
-  "simulatorPluginLibVersion": {},
-  "simulatorType": "wechat"
+  }
 }

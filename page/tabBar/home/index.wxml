@@ -1,0 +1,47 @@
+<!--pages/home/index.wxml-->
+<scroll-view class="page-scroll-view" scroll-y type="list">
+  <map class="absolute h-full w-full" id="map" subkey="{{key}}" layer-style="2" latitude="{{location.latitude}}" longitude="{{location.longitude}}" scale="{{scale}}" min-scale="{{minScale}}" max-scale="{{maxScale}}" show-location="{{showPosition}}" markers="{{markers}}" bindmarkertap="onTapMarker" bindregionchange="onRegionChange">
+  </map>
+  <view class="absolute h-100rpx w-full px-20rpx py-20rpx rounded-20rpx box-border">
+    <van-search custom-class="rounded-20rpx" value="{{ value }}" placeholder="请输入搜索公交线路名" bind:focus="onFocus" bind:blur="onBlur" bind:change="onChange" />
+  </view>
+  <scroll-view wx:if="{{searchList.length>0&&value!==''}}" class="absolute top-140rpx h-70vh w-full rounded-20rpx bg-white pt-40rpx" scroll-y type="list">
+    <view wx:for="{{searchList}}" wx:key="id" wx:for-item="item" class="px-30rpx" bindtap="onClick" id="{{item.lineName}}">
+      <view class="flex items-start">
+        <van-icon name="upgrade" size="50rpx" />
+        <view class="ml-30rpx">
+          <view class="mb-10rpx">{{item.lineName}}</view>
+          <view class="text-gray-500 text-size-20rpx flex items-center">
+            <view class="bg-green-500 text-white p-4rpx rounded-4rpx">起</view>
+            <view class="ml-10rpx">{{item.startStation}}</view>
+            <view class="mx-10rpx"> - </view>
+            <view class="bg-red-500 text-white p-4rpx rounded-4rpx">终</view>
+            <view class="ml-10rpx">{{item.endStation}}</view>
+          </view>
+        </view>
+      </view>
+      <van-divider hairline />
+    </view>
+  </scroll-view>
+
+  <scroll-view wx:elif="{{searchInputFocus}}" class="absolute top-140rpx w-full rounded-20rpx bg-white" scroll-y type="list">
+    <view class="flex justify-evenly pt-20rpx">
+      <view>
+        <van-icon name="wap-home" color="#10b981" />
+        回家
+      </view>
+      <view>
+        <van-icon name="friends" color="gray" />
+        去公司
+      </view>
+      <view>
+        <van-icon name="star" color="orange" />
+        收藏夹
+      </view>
+    </view>
+    <van-divider contentPosition="center">历史记录</van-divider>
+    <van-empty description="暂无历史记录" />
+  </scroll-view>
+</scroll-view>
+
+<wxs src="/common/comm.wxs" module="tools" />

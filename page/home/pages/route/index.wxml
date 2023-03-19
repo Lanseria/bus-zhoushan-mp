@@ -1,0 +1,41 @@
+<page-meta root-font-size="32rpx">
+  <navigation-bar title="{{id}}" />
+</page-meta>
+
+<view class="h-full w-full flex flex-col items-start relative">
+  <view class="absolute bottom-200rpx right-20rpx flex flex-col z-2">
+    <t-button theme="primary" icon="refresh" shape="square" size="large" aria-label="刷新" bind:tap="fetchDetails"></t-button>
+    <t-button class="mt-20rpx" theme="primary" icon="swap" shape="square" size="large" aria-label="换向" bind:tap="handleSwap"></t-button>
+  </view>
+  <view class="w-full flex flex-col items-start px-40rpx pt-20rpx pb-20rpx box-border shadow-border">
+    <view class="flex items-center">
+      <view class="bg-green-500 rounded-15rpx w-40rpx h-40rpx text-white p-10rpx text-center">起</view>
+      <view class="ml-20rpx">{{ routeDetail[upOrDown].startStation }}</view>
+    </view>
+    <view class="flex items-center mt-20rpx">
+      <view class="bg-red-500 rounded-15rpx w-40rpx h-40rpx text-white p-10rpx text-center">终</view>
+      <view class="ml-20rpx">{{ routeDetail[upOrDown].endStation }}</view>
+    </view>
+    <view class="flex items-center mt-20rpx">
+      <view>首发：</view>
+      <view class="text-green-500"> {{ routeDetail[upOrDown].startFirst }}</view>
+      <view class="ml-20rpx">末班：</view>
+      <view class="text-red-500"> {{ routeDetail[upOrDown].startLast }}</view>
+    </view>
+  </view>
+  <scroll-view class="w-full flex flex-col flex-1 p-40rpx" scroll-y type="list" style="height: 500px;">
+    <t-steps layout="vertical" wx:if="{{routeDetail[upOrDown].stationList.length}}" theme="dot" readonly>
+      <t-step-item wx:for="{{routeDetail[upOrDown].stationList}}" wx:for-item="item" wx:key="prefix" title="{{item.stationName}}">
+        <view slot="content">
+          <view wx:for="{{groupsVl[item.stationOrder]}}" wx:for-item="it" wx:key="prefix" class="text-left flex items-center text-size-28rpx {{it.isArriveStation?'text-red-500':'text-green-500'}}">
+            <t-icon wx:if="{{it.isArriveStation}}" name="caret-up-small" size="40rpx" />
+            <t-icon wx:else name="arrow-down" size="40rpx" />
+            {{ it.plateNumber }}
+            <text wx:if="{{it.isArriveStation}}">已到站</text>
+            <text wx:else>未到站，距离下站{{ it.distance }}米</text>
+          </view>
+        </view>
+      </t-step-item>
+    </t-steps>
+  </scroll-view>
+</view>

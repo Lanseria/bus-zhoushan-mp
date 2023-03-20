@@ -99,13 +99,6 @@
     ]
   },
   "usingComponents": {
-    "certificate": "components/certificate/index",
-    "classes-item": "components/classes_item/index",
-    "course-rate": "components/course_rate/index",
-    "question-direct-btn": "components/question_direct_btn/index",
-    "question-item": "components/question_item/index",
-    "question-record-popup": "components/question_record_popup/index",
-    "question-status": "components/question_status/index",
     "van-action-sheet": "@vant/weapp/action-sheet/index",
     "van-button": "@vant/weapp/button/index",
     "van-card": "@vant/weapp/card/index",

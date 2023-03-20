@@ -113,6 +113,16 @@ class ReportService {
   }
 }
 
+function AES_DE(text) {
+  const t = CryptoJS.enc.Utf8.parse("422556651C7F7B2B5C266EED06068230")
+  const n = CryptoJS.AES.decrypt(
+    text, t, {
+    mode: CryptoJS.mode.ECB
+  }
+  )
+  const i = JSON.parse(n.toString(CryptoJS.enc.Utf8))
+  console.log(i)
+}
 export {
-  openDoc, ReportBase, ReportModule, ReportService
+  openDoc, ReportBase, ReportModule, ReportService, AES_DE
 }

@@ -1,9 +1,8 @@
-const { baseUrl, key } = require("../env")
-let host = 'https://zawx-gateway.vip.cpolar.top';
+const { baseUrl, key, cryptoHost } = require("../env")
 // 获取小程序当前版本信息 https://developers.weixin.qq.com/miniprogram/dev/api/open-api/account-info/wx.getAccountInfoSync.html
 // 自动根据版本切换接口请求地址
 const { miniProgram: { envVersion } } = wx.getAccountInfoSync();
-
+let host = ''
 if (envVersion === 'release') {
   host = baseUrl;
 }
@@ -19,5 +18,6 @@ if (envVersion === 'develop') {
 module.exports = {
   key,
   baseUrl: host,
+  cryptoUrl: cryptoHost,
   envVersion,
 }

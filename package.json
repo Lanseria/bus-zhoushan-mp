@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "ssh://git@122.112.189.125:18022/lanseria/asqz-mp.git"
+    "url": "git@github.com:lanseria/bus-zhoushan-mp.git"
   },
   "keywords": [],
   "author": "",

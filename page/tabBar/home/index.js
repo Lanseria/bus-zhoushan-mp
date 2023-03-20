@@ -2,7 +2,8 @@
 const log = require('~/common/log.js') // 引用上面的 log.js 文件
 const { key } = require("~/common/constant");
 const { searchBusLines } = require('~/common/api/bus');
-const QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js');
+const QQMapWX = require('~/common/qqmap-wx-jssdk.min');
+const { searchNearBusLines } = require('~/common/api/crypto');
 const qqmapsdk = new QQMapWX({
   key // 必填
 });
@@ -75,7 +76,11 @@ Page({
       searchInputFocus: true
     })
   },
+  fetchNearBus() {
+    searchNearBusLines()
+  },
   fetchData() {
+    this.fetchNearBus()
   },
   /**
    * 生命周期函数--监听页面加载

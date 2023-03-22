@@ -3,9 +3,7 @@
   "lazyCodeLoading": "requiredComponents",
   "pages": [
     "page/tabBar/home/index",
-    "page/tabBar/user/index",
-    "page/tabBar/course/index",
-    "page/tabBar/practice/index"
+    "page/tabBar/course/index"
   ],
   "preloadRule": {
     "page/tabBar/home/index": {
@@ -18,18 +16,6 @@
       "network": "all",
       "packages": [
         "page/course/"
-      ]
-    },
-    "page/tabBar/practice/index": {
-      "network": "all",
-      "packages": [
-        "page/practice/"
-      ]
-    },
-    "page/tabBar/user/index": {
-      "network": "all",
-      "packages": [
-        "page/user/"
       ]
     }
   },
@@ -49,21 +35,6 @@
         "pages/new_detail/index"
       ],
       "root": "page/course/"
-    },
-    {
-      "pages": [
-        "pages/chat/index"
-      ],
-      "root": "page/practice/"
-    },
-    {
-      "pages": [
-        "pages/updateuserinfo/index",
-        "pages/ordersubmit/index",
-        "pages/orderlist/index",
-        "pages/aboutus/index"
-      ],
-      "root": "page/user/"
     }
   ],
   "tabBar": {
@@ -83,18 +54,6 @@
         "iconPath": "@iconPathCourse",
         "selectedIconPath": "@selectedIconPathCourse",
         "text": "信息查询"
-      },
-      {
-        "pagePath": "page/tabBar/practice/index",
-        "iconPath": "@iconPathPractice",
-        "selectedIconPath": "@selectedIconPathPractice",
-        "text": "客服"
-      },
-      {
-        "pagePath": "page/tabBar/user/index",
-        "iconPath": "@iconPathUser",
-        "selectedIconPath": "@selectedIconPathUser",
-        "text": "我的"
       }
     ]
   },

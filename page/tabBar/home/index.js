@@ -1,54 +1,30 @@
 // pages/home/index.js
-const log = require('~/common/log.js') // 引用上面的 log.js 文件
-const { key } = require("~/common/constant");
 const { searchBusLines } = require('~/common/api/bus');
-const QQMapWX = require('~/common/qqmap-wx-jssdk.min');
 const { searchNearBusLines } = require('~/common/api/crypto');
-const qqmapsdk = new QQMapWX({
-  key // 必填
-});
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    key,
-    showPosition: true,
-    location: {
-      latitude: 30.040415,
-      longitude: 122.273511
-    },
-    myLocation: {
-      latitude: 30.040415,
-      longitude: 122.273511
-    },
-    dragLocation: {
-      latitude: 30.040415,
-      longitude: 122.273511
-    },
-    minScale: 8,
-    maxScale: 16,
-    scale: 8,
     value: '',
     searchInputFocus: false,
-    searchList: []
-  },
-  // 逆解析
-  _reverseGeocoder(item, cb) {
-    qqmapsdk.reverseGeocoder({
-      // 调用逆地址解析
-      location: {
-        latitude: item.latitude,
-        longitude: item.longitude
-      },
-      success: res => {
-        cb(res)
-      }
-    }
-    )
+    searchList: [],
+    historyList: []
   },
   onClick({ currentTarget }) {
+    const { historyList } = this.data
+    console.log(currentTarget.dataset.item)
+    historyList.push(currentTarget.dataset.item)
+    const newHistoryList = Array.from(new Set(historyList.map(JSON.stringify)), JSON.parse);
+    wx.setStorage({
+      key: 'history',
+      data: newHistoryList
+    })
+    this.setData({
+      history: newHistoryList,
+      value: ''
+    })
     wx.navigateTo({
       url: `/page/home/pages/route/index?id=${currentTarget.id}`,
     })
@@ -86,6 +62,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.fetchData()
   },
 
   /**
@@ -100,6 +77,14 @@ Page({
    */
   onShow() {
     this.fetchData()
+    wx.getStorage({
+      'key': 'history',
+      success: (res) => {
+        this.setData({
+          historyList: res.data,
+        })
+      }
+    })
   },
 
   /**

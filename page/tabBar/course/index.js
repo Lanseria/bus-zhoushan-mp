@@ -1,19 +1,39 @@
 // pages/course/index.js
 
+const { queryNewList } = require("~/common/api/bus")
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    newList: [],
+    show: false,
+    content: ''
   },
 
-  fetchData() {
+  onClickHide() {
+    this.setData({ show: false });
+  },
+
+  noop() { },
+  onClick({ currentTarget }) {
+    this.setData({ show: true, content: currentTarget.id });
+    console.log(currentTarget)
+
+  },
+  async fetchData() {
+    const data = await queryNewList()
+    this.setData({
+      newList: data
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.fetchData()
 
   },
 

@@ -1,2 +1,6 @@
 <!--page/course/pages/new_detail/index.wxml-->
-<text>page/course/pages/new_detail/index.wxml</text>
+<view>
+  <van-cell-group>
+    <van-cell wx:for="{{newList}}" wx:key="id" wx:for-item="item" title="{{item.title}}" value="{{item.date}}" />
+  </van-cell-group>
+</view>

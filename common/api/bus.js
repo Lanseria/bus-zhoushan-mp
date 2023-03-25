@@ -23,3 +23,11 @@ export const details = (lineId) => {
     data: { h: { deviceId: 'fixedDeviceID', userToken: '', appCode: '330900', codeValue: '330900', sourceCodeValue: '330900' }, b: { lineId, offset: 100 } },
   })
 }
+
+
+export const queryNewList = () => {
+  return api({
+    url: `https://jihulab.com/data1355712/zhoushan-bus-data/-/raw/main/bus_news.json`,
+    method: 'GET',
+  })
+}

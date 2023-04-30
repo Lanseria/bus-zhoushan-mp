@@ -5,9 +5,9 @@
   </van-cell-group>
   <van-overlay show="{{ show }}" bind:click="onClickHide">
     <view class="wrapper">
-      <view class="block h-90vh overflow-y-scroll" catch:tap="noop">
-        {{content}}
-      </view>
+      <scroll-view scroll-y="true" class="block h-80vh" catch:tap="noop">
+        <rich-text nodes="{{content}}"></rich-text>
+      </scroll-view>
     </view>
   </van-overlay>
 </scroll-view>

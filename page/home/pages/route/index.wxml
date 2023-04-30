@@ -32,9 +32,9 @@
           <view wx:for="{{groupsVl[item.stationOrder]}}" wx:for-item="it" wx:key="prefix" class="text-left flex items-center text-size-28rpx {{it.isArriveStation?'text-red-500':'text-green-500'}}">
             <t-icon wx:if="{{it.isArriveStation}}" name="caret-up-small" size="40rpx" />
             <t-icon wx:else name="arrow-down" size="40rpx" />
-            {{ it.plateNumber }}
+            <!-- {{ it.plateNumber }} -->
             <text wx:if="{{it.isArriveStation}}">已到站</text>
-            <text wx:else>已离开前往下站，距下站还有{{ it.distance }}米</text>
+            <text wx:else>已离开此站前往下站，距下站还有{{ it.distance }}米</text>
           </view>
         </view>
       </t-step-item>

@@ -64,7 +64,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      id: options.id
+      id: decodeURIComponent(options.id)
     })
     this.fetchData()
   },

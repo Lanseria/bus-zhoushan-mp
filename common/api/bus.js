@@ -27,7 +27,7 @@ export const details = (lineId) => {
 
 export const queryNewList = () => {
   return api({
-    url: `https://jihulab.com/data1355712/zhoushan-bus-data/-/raw/main/bus_news.json`,
+    url: `https://s8zygv.laf.run/scheduleBusNewsQuery`,
     method: 'GET',
   })
 }

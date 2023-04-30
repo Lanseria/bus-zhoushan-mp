@@ -131,8 +131,8 @@
 .h-full {
   height: 100%;
 }
-.h-90vh {
-  height: 90vh;
+.h-80vh {
+  height: 80vh;
 }
 .h-100rpx {
   height: 100rpx;
@@ -214,9 +214,6 @@
 }
 .ml-20rpx {
   margin-left: 20rpx;
-}
-.overflow-y-scroll {
-  overflow-y: scroll;
 }
 .p-4rpx {
   padding: 4rpx;

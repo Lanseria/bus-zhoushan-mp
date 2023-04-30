@@ -26,7 +26,7 @@ Page({
       value: ''
     })
     wx.navigateTo({
-      url: `/page/home/pages/route/index?id=${currentTarget.id}`,
+      url: `/page/home/pages/route/index?id=${encodeURIComponent(currentTarget.id)}`,
     })
   },
   async fetchSearchBuslines() {
@@ -101,4 +101,24 @@ Page({
 
   },
 
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh() {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom() {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage() {
+
+  }
 })

@@ -4,5 +4,18 @@
   "setting": {
     "compileHotReLoad": true
   },
-  "libVersion": "2.30.0"
+  "libVersion": "2.30.0",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "22路",
+          "pathName": "page/home/pages/route/index",
+          "query": "id=22%E8%B7%AF",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
 }

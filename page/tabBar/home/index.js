@@ -26,7 +26,7 @@ Page({
       value: ''
     })
     wx.navigateTo({
-      url: `/page/home/pages/route/index?id=${encodeURIComponent(currentTarget.id)}`,
+      url: `/page/home/pages/route/index?id=${currentTarget.id}`,
     })
   },
   async fetchSearchBuslines() {

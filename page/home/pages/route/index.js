@@ -55,7 +55,8 @@ Page({
     }
     this.fetchDetails()
     this.intervalDetail()
-  },
+  },//'22%25E8%25B7%25AF'
+  // '22%E8%B7%AF'
   fetchData() {
     this.fetchLine()
   },

@@ -27,7 +27,7 @@ export const details = (lineId) => {
 
 export const queryNewList = () => {
   return api({
-    url: `https://s8zygv.laf.run/scheduleBusNewsQuery`,
+    url: `https://s8zygv.laf.run/queryBusNews`,
     method: 'GET',
   })
 }

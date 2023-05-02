@@ -38,3 +38,10 @@ export const postHotRoute = (name) => {
     method: 'GET',
   })
 }
+
+export const getHotBusLines = () => {
+  return api({
+    url: `https://s8zygv.laf.run/getHotBusLines`,
+    method: 'GET',
+  })
+}

@@ -26,6 +26,10 @@
 .to-blue-500 {
   --tw-gradient-to: rgba(59, 130, 246, var(--tw-to-opacity, 1));
 }
+.border-red-200 {
+  --tw-border-opacity: 1;
+  border-color: rgba(254, 202, 202, var(--tw-border-opacity));
+}
 .border-white {
   --tw-border-opacity: 1;
   border-color: rgba(255, 255, 255, var(--tw-border-opacity));
@@ -50,6 +54,12 @@
 }
 .border-solid {
   border-style: solid;
+}
+.border {
+  border-width: 1px;
+}
+.border-1rpx {
+  border-width: 1rpx;
 }
 .border-2rpx {
   border-width: 2rpx;
@@ -185,6 +195,9 @@
 .ml-10rpx {
   margin-left: 10rpx;
 }
+.mr-20rpx {
+  margin-right: 20rpx;
+}
 .ml-8px {
   margin-left: 8px;
 }
@@ -236,6 +249,14 @@
   padding-left: 30rpx;
   padding-right: 30rpx;
 }
+.px-40rpx {
+  padding-left: 40rpx;
+  padding-right: 40rpx;
+}
+.py-10rpx {
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
 .px-16px {
   padding-left: 16px;
   padding-right: 16px;
@@ -259,10 +280,6 @@
 .py-8rpx {
   padding-top: 8rpx;
   padding-bottom: 8rpx;
-}
-.px-40rpx {
-  padding-left: 40rpx;
-  padding-right: 40rpx;
 }
 .pt-40rpx {
   padding-top: 40rpx;

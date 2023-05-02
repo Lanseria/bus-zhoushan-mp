@@ -25,6 +25,14 @@
   </scroll-view>
 
   <scroll-view wx:else class="absolute top-140rpx w-full rounded-20rpx bg-white" scroll-y type="list">
+    <view class="px-40rpx">
+      热门线路：
+      <view class="flex justify-start pt-20rpx">
+        <view class="border border-solid border-1rpx border-red-200 bg-red-500 text-white px-20rpx py-10rpx mr-20rpx" wx:for="{{hotList}}" wx:key="id" wx:for-item="item" bindtap="onHotClick" id="{{item.name}}">
+          {{item.name}}
+        </view>
+      </view>
+    </view>
     <!-- <view class="flex justify-evenly pt-20rpx">
       <view>
         <van-icon name="wap-home" color="#10b981" />

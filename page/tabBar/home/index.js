@@ -1,5 +1,5 @@
 // pages/home/index.js
-const { searchBusLines } = require('~/common/api/bus');
+const { searchBusLines, getHotBusLines } = require('~/common/api/bus');
 const { searchNearBusLines } = require('~/common/api/crypto');
 Page({
 
@@ -10,7 +10,16 @@ Page({
     value: '',
     searchInputFocus: false,
     searchList: [],
-    historyList: []
+    historyList: [],
+    hotList: []
+  },
+  onNavigate(id) {
+    wx.navigateTo({
+      url: `/page/home/pages/route/index?id=${id}`,
+    })
+  },
+  onHotClick({ currentTarget }) {
+    this.onNavigate(currentTarget.id)
   },
   onClick({ currentTarget }) {
     const { historyList } = this.data
@@ -25,9 +34,7 @@ Page({
       history: newHistoryList,
       value: ''
     })
-    wx.navigateTo({
-      url: `/page/home/pages/route/index?id=${currentTarget.id}`,
-    })
+    this.onNavigate(currentTarget.id)
   },
   async fetchSearchBuslines() {
     const { data } = await searchBusLines(this.data.value)
@@ -55,8 +62,15 @@ Page({
   fetchNearBus() {
     searchNearBusLines()
   },
+  async fetchHotLine() {
+    const res = await getHotBusLines()
+    this.setData({
+      hotList: res
+    })
+  },
   fetchData() {
     this.fetchNearBus()
+    this.fetchHotLine()
   },
   /**
    * 生命周期函数--监听页面加载

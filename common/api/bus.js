@@ -31,3 +31,10 @@ export const queryNewList = () => {
     method: 'GET',
   })
 }
+
+export const postHotRoute = (name) => {
+  return api({
+    url: `https://s8zygv.laf.run/postHotRoute?busLineName=${name}`,
+    method: 'GET',
+  })
+}

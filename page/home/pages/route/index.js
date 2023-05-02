@@ -1,4 +1,4 @@
-const { queryLine, details } = require("~/common/api/bus")
+const { queryLine, details, postHotRoute } = require("~/common/api/bus")
 const { defaultRouteDetail } = require("~/common/data")
 const _ = require('~/common/lodash-min')
 let interval = 0
@@ -39,6 +39,7 @@ Page({
     })
   },
   async fetchLine() {
+    postHotRoute(this.data.id)
     const { data } = await queryLine(this.data.id)
     this.setData({
       routeDetail: data

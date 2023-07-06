@@ -45,3 +45,10 @@ export const getHotBusLines = () => {
     method: 'GET',
   })
 }
+
+export const queryGasOnline = () => {
+  return api({
+    url: `https://s8zygv.laf.run/queryGasOnline`,
+    method: 'GET',
+  })
+}

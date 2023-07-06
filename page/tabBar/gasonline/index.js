@@ -1,4 +1,6 @@
-// pages/practice/index.js
+// pages/course/index.js
+
+const { queryGasOnline } = require("~/common/api/bus")
 
 Page({
 
@@ -6,13 +8,35 @@ Page({
    * 页面的初始数据
    */
   data: {
+    gasPriceList: [],
+    show: false,
+    content: ''
   },
-  fetchData() {
+
+  onClickHide() {
+    this.setData({ show: false });
+  },
+
+  noop() { },
+  onClick({ currentTarget }) {
+    this.setData({ show: true, content: currentTarget.id });
+    console.log(currentTarget)
+
+  },
+  async fetchData() {
+    const data = await queryGasOnline()
+    this.setData({
+      gasPriceList: data.data
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(options) { },
+  onLoad(options) {
+    this.fetchData()
+
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

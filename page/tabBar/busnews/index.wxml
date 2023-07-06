@@ -1,7 +1,8 @@
 <scroll-view class="page-scroll-view" scroll-y type="list">
   <ad unit-id="adunit-826df0553d777f12"></ad>
   <van-cell-group>
-    <van-cell wx:for="{{newList}}" wx:key="id" wx:for-item="item" title="{{item.title}}" value="{{item.date}}" bind:click="onClick" id="{{item.content}}" />
+    <van-cell wx:for="{{newList}}" wx:key="id" wx:for-item="item" title="{{item.title}}" value="{{item.date}}"
+      bind:click="onClick" id="{{item.content}}" />
   </van-cell-group>
   <van-overlay show="{{ show }}" bind:click="onClickHide">
     <view class="wrapper">

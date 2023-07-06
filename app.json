@@ -3,19 +3,14 @@
   "lazyCodeLoading": "requiredComponents",
   "pages": [
     "page/tabBar/home/index",
-    "page/tabBar/course/index"
+    "page/tabBar/busnews/index",
+    "page/tabBar/gasonline/index"
   ],
   "preloadRule": {
     "page/tabBar/home/index": {
       "network": "all",
       "packages": [
         "page/home/"
-      ]
-    },
-    "page/tabBar/course/index": {
-      "network": "all",
-      "packages": [
-        "page/course/"
       ]
     }
   },
@@ -29,12 +24,6 @@
         "pages/route/index"
       ],
       "root": "page/home/"
-    },
-    {
-      "pages": [
-        "pages/new_detail/index"
-      ],
-      "root": "page/course/"
     }
   ],
   "tabBar": {
@@ -50,10 +39,16 @@
         "text": "公交查询"
       },
       {
-        "pagePath": "page/tabBar/course/index",
+        "pagePath": "page/tabBar/busnews/index",
         "iconPath": "@iconPathCourse",
         "selectedIconPath": "@selectedIconPathCourse",
         "text": "信息查询"
+      },
+      {
+        "pagePath": "page/tabBar/gasonline/index",
+        "iconPath": "@iconPathPractice",
+        "selectedIconPath": "@selectedIconPathPractice",
+        "text": "油价查询"
       }
     ]
   },

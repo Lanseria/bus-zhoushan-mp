@@ -9,32 +9,40 @@ Page({
    */
   data: {
     gasPriceList: [],
-    show: false,
-    content: ''
+    avg92: 0,
+    avg95: 0,
+    avg98: 0,
+    avgdiesel: 0,
+    currentProvince: 'Avgs'
   },
-
-  onClickHide() {
-    this.setData({ show: false });
-  },
-
-  noop() { },
-  onClick({ currentTarget }) {
-    this.setData({ show: true, content: currentTarget.id });
+  selectProvince({ currentTarget }) {
+    wx.setStorageSync('currentProvince', currentTarget.id)
+    this.setData({ currentProvince: currentTarget.id });
     console.log(currentTarget)
-
   },
   async fetchData() {
     const data = await queryGasOnline()
+    const avg92 = (data.data.map(m => +m.gasoline92).reduce((x, y) => x + y, 0) / 31).toFixed(2)
+    const avg95 = (data.data.map(m => +m.gasoline95).reduce((x, y) => x + y, 0) / 31).toFixed(2)
+    const avg98 = (data.data.map(m => +m.gasoline98).reduce((x, y) => x + y, 0) / 31).toFixed(2)
+    const avgdiesel = (data.data.map(m => +m.diesel).reduce((x, y) => x + y, 0) / 31).toFixed(2)
     this.setData({
-      gasPriceList: data.data
+      gasPriceList: data.data,
+      avg92: avg92,
+      avg95: avg95,
+      avg98: avg98,
+      avgdiesel: avgdiesel,
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    const currentProvince = wx.getStorageSync('currentProvince')
+    this.setData({
+      currentProvince
+    })
     this.fetchData()
-
   },
 
   /**

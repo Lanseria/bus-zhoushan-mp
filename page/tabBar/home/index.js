@@ -69,7 +69,7 @@ Page({
     })
   },
   fetchData() {
-    this.fetchNearBus()
+    // this.fetchNearBus()
     this.fetchHotLine()
   },
   /**

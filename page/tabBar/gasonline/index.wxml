@@ -1,8 +1,9 @@
 <!--page/tabBar/gasonline/index.wxml-->
-<view class="table">
+<view class="grid">
+  <ad unit-id="adunit-a6f5ef70c27ac884"></ad>
   <view class="table-caption">国内油价</view>
   <view class="table-header-group">
-    <view class="table-row">
+    <view class="grid grid-cols-5">
       <view class="table-cell">省份</view>
       <view class="table-cell">#92</view>
       <view class="table-cell">#95</view>
@@ -10,8 +11,8 @@
       <view class="table-cell">柴油</view>
     </view>
   </view>
-  <view class="table-row-group">
-    <view class="table-row" wx:for="{{gasPriceList}}" wx:key="id" wx:for-item="item">
+  <view class="">
+    <view class="grid grid-cols-5 {{currentProvince===item.province ? 'bg-green-5 font-bold text-white': ''}}" wx:for="{{gasPriceList}}" wx:key="id" wx:for-item="item" id="{{item.province}}" bindtap="selectProvince">
       <view class="table-cell">{{item.province}}</view>
       <view class="table-cell">{{item.gasoline92}}</view>
       <view class="table-cell">{{item.gasoline95}}</view>
@@ -19,10 +20,13 @@
       <view class="table-cell">{{item.diesel}}</view>
     </view>
   </view>
-  <view class="table-footer-group">
-    <view class="table-row">
+  <view class="">
+    <view class="grid grid-cols-5">
       <view class="table-cell">Avgs</view>
-      <view class="table-cell">7</view>
+      <view class="table-cell">{{avg92}}</view>
+      <view class="table-cell">{{avg95}}</view>
+      <view class="table-cell">{{avg98}}</view>
+      <view class="table-cell">{{avgdiesel}}</view>
     </view>
   </view>
 </view>

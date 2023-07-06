@@ -21,7 +21,6 @@ Page({
   onClick({ currentTarget }) {
     this.setData({ show: true, content: currentTarget.id });
     console.log(currentTarget)
-
   },
   async fetchData() {
     const data = await queryNewList()

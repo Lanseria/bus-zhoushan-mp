@@ -4,9 +4,8 @@
   "description": "我的公共查询",
   "main": "app.js",
   "scripts": {
-    "windicss": "windicss",
-    "dev": "chokidar \"page/**/*.wxml\" \"components/**/*.wxml\" -c \"npm run w\"",
-    "w": "npm run windicss \"page/**/*.wxml\" \"components/**/*.wxml\" -o /windi.wxss --config windi.config.js -d && mv windi.css windi.wxss"
+    "dev": "unocss \"{page,components}/**/*.wxml\" -w -o uno.wxss",
+    "up": "taze major -I"
   },
   "repository": {
     "type": "git",
@@ -24,7 +23,9 @@
     "wx-axios-promise": "^2.4.1"
   },
   "devDependencies": {
-    "chokidar-cli": "^3.0.0",
-    "windicss": "^3.5.6"
+    "@unocss/cli": "^0.53.0",
+    "taze": "^0.10.2",
+    "unocss": "^0.53.0",
+    "unocss-preset-weapp": "^0.52.1"
   }
 }

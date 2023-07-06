@@ -34,20 +34,20 @@
     "list": [
       {
         "pagePath": "page/tabBar/home/index",
-        "iconPath": "@iconPathHome",
-        "selectedIconPath": "@selectedIconPathHome",
+        "iconPath": "@iconPathBus",
+        "selectedIconPath": "@selectedIconPathBus",
         "text": "公交查询"
       },
       {
         "pagePath": "page/tabBar/busnews/index",
-        "iconPath": "@iconPathCourse",
-        "selectedIconPath": "@selectedIconPathCourse",
+        "iconPath": "@iconPathNewspaper",
+        "selectedIconPath": "@selectedIconPathNewspaper",
         "text": "信息查询"
       },
       {
         "pagePath": "page/tabBar/gasonline/index",
-        "iconPath": "@iconPathPractice",
-        "selectedIconPath": "@selectedIconPathPractice",
+        "iconPath": "@iconPathGasStation",
+        "selectedIconPath": "@selectedIconPathGasStation",
         "text": "油价查询"
       }
     ]

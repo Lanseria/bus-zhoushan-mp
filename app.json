@@ -3,6 +3,7 @@
   "lazyCodeLoading": "requiredComponents",
   "pages": [
     "page/tabBar/home/index",
+    "page/tabBar/busstop/index",
     "page/tabBar/busnews/index",
     "page/tabBar/gasonline/index"
   ],
@@ -24,6 +25,12 @@
         "pages/route/index"
       ],
       "root": "page/home/"
+    },
+    {
+      "pages": [
+        "pages/lines/index"
+      ],
+      "root": "page/busstop/"
     }
   ],
   "tabBar": {
@@ -37,6 +44,12 @@
         "iconPath": "@iconPathBus",
         "selectedIconPath": "@selectedIconPathBus",
         "text": "公交查询"
+      },
+      {
+        "pagePath": "page/tabBar/busstop/index",
+        "iconPath": "@iconPathBusStop",
+        "selectedIconPath": "@selectedIconPathBusStop",
+        "text": "站点查询"
       },
       {
         "pagePath": "page/tabBar/busnews/index",

@@ -1,5 +1,5 @@
 // pages/home/index.js
-const { searchBusLines, getHotBusLines } = require('~/common/api/bus');
+const { searchBusStations, getHotBusStops } = require('~/common/api/bus');
 const { searchNearBusLines } = require('~/common/api/crypto');
 Page({
 
@@ -15,7 +15,7 @@ Page({
   },
   onNavigate(id) {
     wx.navigateTo({
-      url: `/page/home/pages/route/index?id=${id}`,
+      url: `/page/busstop/pages/lines/index?id=${id}`,
     })
   },
   onHotClick({ currentTarget }) {
@@ -27,7 +27,7 @@ Page({
     historyList.push(currentTarget.dataset.item)
     const newHistoryList = Array.from(new Set(historyList.map(JSON.stringify)), JSON.parse);
     wx.setStorage({
-      key: 'history',
+      key: 'stations-history',
       data: newHistoryList
     })
     this.setData({
@@ -36,8 +36,8 @@ Page({
     })
     this.onNavigate(currentTarget.id)
   },
-  async fetchSearchBuslines() {
-    const data = await searchBusLines(this.data.value)
+  async fetchSearchBusStations() {
+    const data = await searchBusStations(this.data.value)
     this.setData({
       searchList: data
     })
@@ -46,7 +46,7 @@ Page({
     this.setData({
       value: e.detail,
     });
-    this.fetchSearchBuslines()
+    this.fetchSearchBusStations()
   },
   onBlur() {
     this.setData({
@@ -61,15 +61,15 @@ Page({
   fetchNearBus() {
     searchNearBusLines()
   },
-  async fetchHotLine() {
-    const res = await getHotBusLines()
+  async fetchHotStops() {
+    const res = await getHotBusStops()
     this.setData({
       hotList: res
     })
   },
   fetchData() {
     // this.fetchNearBus()
-    this.fetchHotLine()
+    this.fetchHotStops()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -91,7 +91,7 @@ Page({
   onShow() {
     this.fetchData()
     wx.getStorage({
-      'key': 'history',
+      'key': 'stations-history',
       success: (res) => {
         this.setData({
           historyList: res.data,

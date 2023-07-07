@@ -1,0 +1,22 @@
+<page-meta root-font-size="32rpx">
+  <navigation-bar title="{{id}}" />
+</page-meta>
+
+<view class="h-full w-full flex flex-col items-start relative bg-gray-1">
+  <scroll-view class="w-full flex flex-col flex-1" scroll-y type="list" style="height: 500px;">
+    <view class="mb-10rpx bg-white px-20rpx py-10rpx" wx:for="{{lineList}}" wx:key="id" bindtap="onClick"
+      wx:for-item="item" id="{{item.lineName}}">
+      <view class="text-size-40rpx">{{item.lineName}}</view>
+      <view class="flex">
+        <view>{{item.up.startStation}}</view>
+        <view>-</view>
+        <view>{{item.up.endStation}}</view>
+      </view>
+      <view class="flex">
+        <view>{{item.up.departureTime}}</view>
+        <view>-</view>
+        <view>{{item.up.collectTime}}</view>
+      </view>
+    </view>
+  </scroll-view>
+</view>

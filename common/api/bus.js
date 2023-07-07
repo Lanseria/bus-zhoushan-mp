@@ -1,10 +1,23 @@
 const { api } = require('./index')
 
-export const searchBusLines = (lineName) => {
+export const searchBusLinesByStation = (name) => {
   return api({
-    url: `/pts-server/busService/client/busLine/searchBusLines`,
-    method: 'POST',
-    data: { h: { deviceId: 'fixedDeviceID', userToken: '', appCode: '330900', codeValue: '330900', sourceCodeValue: '330900' }, b: { lineName, offset: 10, page: 1 } },
+    url: `https://s8zygv.laf.run/getLinesByStation?stationName=${name}`,
+    method: 'GET',
+  })
+}
+
+export const searchBusLines = (name) => {
+  return api({
+    url: `https://s8zygv.laf.run/searchBusLines?busLineName=${name}`,
+    method: 'GET',
+  })
+}
+
+export const searchBusStations = (name) => {
+  return api({
+    url: `https://s8zygv.laf.run/searchStation?stationName=${name}`,
+    method: 'GET',
   })
 }
 
@@ -39,9 +52,23 @@ export const postHotRoute = (name) => {
   })
 }
 
+export const postHotBusStop = (name) => {
+  return api({
+    url: `https://s8zygv.laf.run/postHotBusStop?stationName=${name}`,
+    method: 'GET',
+  })
+}
+
 export const getHotBusLines = () => {
   return api({
     url: `https://s8zygv.laf.run/getHotBusLines`,
+    method: 'GET',
+  })
+}
+
+export const getHotBusStops = () => {
+  return api({
+    url: `https://s8zygv.laf.run/getHotBusStops`,
     method: 'GET',
   })
 }

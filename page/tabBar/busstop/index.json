@@ -1,5 +1,5 @@
 {
-  "navigationBarTitleText": "公交查询",
+  "navigationBarTitleText": "站点查询",
   "usingComponents": {
     "van-search": "@vant/weapp/search/index"
   }

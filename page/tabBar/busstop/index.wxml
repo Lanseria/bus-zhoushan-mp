@@ -46,18 +46,11 @@
     </view> -->
     <van-divider contentPosition="center">历史记录</van-divider>
     <view wx:for="{{historyList}}" wx:key="id" wx:for-item="item" class="px-30rpx" bindtap="onClick"
-      id="{{item.lineName}}" data-item="{{item}}">
+      id="{{item.stationName}}" data-item="{{item}}">
       <view class="flex items-start">
         <van-icon name="upgrade" size="50rpx" />
         <view class="ml-30rpx">
-          <view class="mb-10rpx">{{item.lineName}}</view>
-          <view class="text-gray-500 text-size-20rpx flex items-center">
-            <view class="bg-green-500 text-white p-4rpx rounded-4rpx">起</view>
-            <view class="ml-10rpx">{{item.startStation}}</view>
-            <view class="mx-10rpx"> - </view>
-            <view class="bg-red-500 text-white p-4rpx rounded-4rpx">终</view>
-            <view class="ml-10rpx">{{item.endStation}}</view>
-          </view>
+          <view class="mb-10rpx">{{item.stationName}}</view>
         </view>
       </view>
       <van-divider hairline />

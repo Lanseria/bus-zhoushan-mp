@@ -1,5 +1,12 @@
 const { api } = require('./index')
 
+export const getVehicleDetails = (lineIds, stationIds) => {
+  return api({
+    url: `https://s8zygv.laf.run/getVehicleDetails?lineIds=${lineIds}&stationIds=${stationIds}`,
+    method: 'GET',
+  })
+}
+
 export const searchBusLinesByStation = (name) => {
   return api({
     url: `https://s8zygv.laf.run/getLinesByStation?stationName=${name}`,

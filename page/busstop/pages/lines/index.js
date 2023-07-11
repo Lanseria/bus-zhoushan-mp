@@ -1,7 +1,5 @@
-const { searchBusLinesByStation, postHotBusStop } = require("~/common/api/bus")
-const { defaultRouteDetail } = require("~/common/data")
+const { searchBusLinesByStation, postHotBusStop, getVehicleDetails } = require("~/common/api/bus")
 const _ = require('~/common/lodash-min')
-let interval = 0
 // page/home/pages/route/index.js
 Page({
 
@@ -10,9 +8,23 @@ Page({
    */
   data: {
     id: '',
-    lineList: []
+    lineList: [],
+    direction: 'up',
+    lineIds: '',
+    stationIds: '',
+    detailMap: {}
   },
-
+  handleExchange() {
+    if (this.data.direction === 'up') {
+      this.setData({
+        direction: 'down'
+      })
+    } else {
+      this.setData({
+        direction: 'up'
+      })
+    }
+  },
   onNavigate(id) {
     wx.navigateTo({
       url: `/page/home/pages/route/index?id=${id}`,
@@ -21,15 +33,38 @@ Page({
   onClick({ currentTarget }) {
     this.onNavigate(currentTarget.id)
   },
+  async fetchDetail() {
+    const res = await getVehicleDetails(this.data.lineIds, this.data.stationIds)
+    this.setData({
+      detailMap: _.keyBy(res, 'lineId')
+    })
+  },
   async fetchLine() {
     const res = await searchBusLinesByStation(this.data.id)
     this.setData({
       lineList: res
     })
+    const lineIds = []
+    const stationIds = []
+    this.data.lineList.forEach((item) => {
+      if (item.up) {
+        lineIds.push(item.up.lineId)
+        stationIds.push(item.up.stationId)
+      }
+      if (item.down) {
+        lineIds.push(item.down.lineId)
+        stationIds.push(item.down.stationId)
+      }
+    })
+    this.setData({
+      lineIds: lineIds.join(),
+      stationIds: stationIds.join()
+    })
   },
-  fetchData() {
+  async fetchData() {
     postHotBusStop(this.data.id)
-    this.fetchLine()
+    await this.fetchLine()
+    await this.fetchDetail()
   },
   /**
    * 生命周期函数--监听页面加载
@@ -52,7 +87,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    this.intervalDetail()
+    // this.intervalDetail()
   },
 
   /**

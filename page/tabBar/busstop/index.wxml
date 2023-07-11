@@ -23,8 +23,9 @@
   <scroll-view wx:else class="absolute top-140rpx w-full rounded-20rpx bg-white" scroll-y type="list">
     <view class="px-40rpx">
       热门站点：
-      <view class="flex justify-start pt-20rpx">
-        <view class="border border-solid border-1rpx border-green-2 bg-green-5 text-white px-20rpx py-10rpx mr-20rpx"
+      <view class="flex flex-wrap justify-start pt-20rpx">
+        <view
+          class="border border-solid border-1rpx border-green-2 bg-green-5 text-white px-20rpx py-10rpx mr-15rpx mb-10rpx"
           wx:for="{{hotList}}" wx:key="id" wx:for-item="item" bindtap="onHotClick" id="{{item.stationName}}">
           {{item.stationName}}
         </view>

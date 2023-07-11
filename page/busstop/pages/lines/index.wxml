@@ -2,20 +2,39 @@
   <navigation-bar title="{{id}}" />
 </page-meta>
 
-<view class="h-full w-full flex flex-col items-start relative bg-gray-1">
+<view class="h-full w-full flex flex-col items-start relative bg-gray-1 relative">
+  <view class="absolute bottom-200rpx right-20rpx flex flex-col z-2">
+    <t-button theme="primary" icon="refresh" shape="square" size="large" aria-label="刷新" bind:tap="fetchDetail">
+    </t-button>
+    <t-button class="mt-20rpx" theme="primary" icon="swap" shape="square" size="large" aria-label="换向"
+      bind:tap="handleExchange"></t-button>
+  </view>
   <scroll-view class="w-full flex flex-col flex-1" scroll-y type="list" style="height: 500px;">
-    <view class="mb-10rpx bg-white px-20rpx py-10rpx" wx:for="{{lineList}}" wx:key="id" bindtap="onClick"
-      wx:for-item="item" id="{{item.lineName}}">
-      <view class="text-size-40rpx">{{item.lineName}}</view>
-      <view class="flex">
-        <view>{{item.up.startStation}}</view>
-        <view>-</view>
-        <view>{{item.up.endStation}}</view>
+    <view class="mb-10rpx bg-white px-30rpx py-20rpx flex justify-between" wx:for="{{lineList}}" wx:key="id"
+      bindtap="onClick" wx:for-item="item" id="{{item.lineName}}">
+      <view class="flex flex-col">
+        <view class="text-size-40rpx">{{item.lineName}}</view>
+        <view class="flex text-gray-5 text-size-26rpx">
+          <view>{{item[direction].startStation}}</view>
+          <view>-</view>
+          <view>{{item[direction].endStation}}</view>
+        </view>
+        <view class="flex text-gray-5 text-size-20rpx">
+          <view>{{item[direction].departureTime}}</view>
+          <view>-</view>
+          <view>{{item[direction].collectTime}}</view>
+        </view>
       </view>
-      <view class="flex">
-        <view>{{item.up.departureTime}}</view>
-        <view>-</view>
-        <view>{{item.up.collectTime}}</view>
+      <view class="flex flex-col items-end">
+        <view></view>
+        <view wx:if="{{!!detailMap[item[direction].lineId]}}" class="text-size-20rpx">
+          剩余
+          <text class="text-size-40rpx">{{detailMap[item[direction].lineId].nextNumber}}</text>
+          站/
+          <text class="text-size-40rpx">{{detailMap[item[direction].lineId].distance/1000}}</text>
+          公里
+        </view>
+        <view class="text-gray-5">{{detailMap[item[direction].lineId].isArriveStation===1?'到站':'未到站'}}</view>
       </view>
     </view>
   </scroll-view>

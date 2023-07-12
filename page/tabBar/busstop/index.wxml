@@ -31,27 +31,13 @@
         </view>
       </view>
     </view>
-    <!-- <view class="flex justify-evenly pt-20rpx">
-      <view>
-        <van-icon name="wap-home" color="#10b981" />
-        回家
-      </view>
-      <view>
-        <van-icon name="friends" color="gray" />
-        去公司
-      </view>
-      <view>
-        <van-icon name="star" color="orange" />
-        收藏夹
-      </view>
-    </view> -->
     <van-divider contentPosition="center">历史记录</van-divider>
     <view wx:for="{{historyList}}" wx:key="id" wx:for-item="item" class="px-30rpx" bindtap="onClick"
       id="{{item.stationName}}" data-item="{{item}}">
-      <view class="flex items-start">
-        <van-icon name="upgrade" size="50rpx" />
+      <view class="flex items-center">
+        <van-icon name="location" class="text-gray" size="50rpx" />
         <view class="ml-30rpx">
-          <view class="mb-10rpx">{{item.stationName}}</view>
+          <view>{{item.stationName}}</view>
         </view>
       </view>
       <van-divider hairline />

@@ -32,7 +32,7 @@
       热门线路：
       <view class="flex flex-wrap justify-start pt-20rpx">
         <view
-          class="border border-solid border-1rpx border-red-2 bg-red-5 text-white px-20rpx py-10rpx  mr-15rpx mb-10rpx"
+          class="border border-solid border-1rpx border-blue-1 bg-blue text-white px-20rpx py-10rpx  mr-15rpx mb-10rpx"
           wx:for="{{hotList}}" wx:key="id" wx:for-item="item" bindtap="onHotClick" id="{{item.name}}">
           {{item.name}}
         </view>
@@ -56,14 +56,14 @@
     <view wx:for="{{historyList}}" wx:key="id" wx:for-item="item" class="px-30rpx" bindtap="onClick"
       id="{{item.lineName}}" data-item="{{item}}">
       <view class="flex items-start">
-        <van-icon name="upgrade" size="50rpx" />
+        <van-icon name="upgrade" class="text-gray" size="50rpx" />
         <view class="ml-30rpx">
           <view class="mb-10rpx">{{item.lineName}}</view>
           <view class="text-gray-500 text-size-20rpx flex items-center">
-            <view class="bg-green-500 text-white p-4rpx rounded-4rpx">起</view>
+            <view class="bg-green-500 text-white py-4rpx px-8rpx rounded-4rpx">起</view>
             <view class="ml-10rpx">{{item.startStation}}</view>
             <view class="mx-10rpx"> - </view>
-            <view class="bg-red-500 text-white p-4rpx rounded-4rpx">终</view>
+            <view class="bg-red-500 text-white py-4rpx px-8rpx rounded-4rpx">终</view>
             <view class="ml-10rpx">{{item.endStation}}</view>
           </view>
         </view>

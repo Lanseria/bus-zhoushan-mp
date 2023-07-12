@@ -8,31 +8,64 @@ Page({
    * 页面的初始数据
    */
   data: {
+    oilType: [
+      {
+        label: '#92',
+        value: 'gasoline92',
+      },
+      {
+        label: '#95',
+        value: 'gasoline95',
+      },
+      {
+        label: '#98',
+        value: 'gasoline98',
+      },
+      {
+        label: '柴油',
+        value: 'diesel',
+      }
+    ],
+    date: new Date().toLocaleDateString(),
+    rawData: [],
     gasPriceList: [],
     avg92: 0,
     avg95: 0,
     avg98: 0,
     avgdiesel: 0,
-    currentProvince: 'Avgs'
+    currentProvince: 'Avgs',
+    sortBy: 'gasoline92'
+  },
+  handleSortOil({ currentTarget }) {
+    wx.setStorageSync('sortBy', currentTarget.id)
+    this.setData({ sortBy: currentTarget.id });
+    this.sortOilList()
   },
   selectProvince({ currentTarget }) {
     wx.setStorageSync('currentProvince', currentTarget.id)
     this.setData({ currentProvince: currentTarget.id });
-    console.log(currentTarget)
+  },
+  sortOilList() {
+    const oilList = this.data.rawData.sort((a, b) => +a[this.data.sortBy] - +b[this.data.sortBy])
+    this.setData({
+      gasPriceList: oilList,
+    })
   },
   async fetchData() {
     const data = await queryGasOnline()
-    const avg92 = (data.data.map(m => +m.gasoline92).reduce((x, y) => x + y, 0) / 31).toFixed(2)
-    const avg95 = (data.data.map(m => +m.gasoline95).reduce((x, y) => x + y, 0) / 31).toFixed(2)
-    const avg98 = (data.data.map(m => +m.gasoline98).reduce((x, y) => x + y, 0) / 31).toFixed(2)
-    const avgdiesel = (data.data.map(m => +m.diesel).reduce((x, y) => x + y, 0) / 31).toFixed(2)
+    const rawData = data.data
+    const avg92 = (rawData.map(m => +m.gasoline92).reduce((x, y) => x + y, 0) / 31).toFixed(2)
+    const avg95 = (rawData.map(m => +m.gasoline95).reduce((x, y) => x + y, 0) / 31).toFixed(2)
+    const avg98 = (rawData.map(m => +m.gasoline98).reduce((x, y) => x + y, 0) / 31).toFixed(2)
+    const avgdiesel = (rawData.map(m => +m.diesel).reduce((x, y) => x + y, 0) / 31).toFixed(2)
     this.setData({
-      gasPriceList: data.data,
+      rawData,
       avg92: avg92,
       avg95: avg95,
       avg98: avg98,
       avgdiesel: avgdiesel,
     })
+    this.sortOilList()
   },
   /**
    * 生命周期函数--监听页面加载

@@ -1,8 +1,8 @@
 // pages/home/index.js
 const { searchBusLines, getHotBusLines } = require('~/common/api/bus');
 const { searchNearBusLines } = require('~/common/api/crypto');
+const LINE_HISTORY = 'line_history'
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -27,7 +27,7 @@ Page({
     historyList.push(currentTarget.dataset.item)
     const newHistoryList = Array.from(new Set(historyList.map(JSON.stringify)), JSON.parse);
     wx.setStorage({
-      key: 'history',
+      key: LINE_HISTORY,
       data: newHistoryList
     })
     this.setData({
@@ -91,7 +91,7 @@ Page({
   onShow() {
     this.fetchData()
     wx.getStorage({
-      'key': 'history',
+      'key': LINE_HISTORY,
       success: (res) => {
         this.setData({
           historyList: res.data,

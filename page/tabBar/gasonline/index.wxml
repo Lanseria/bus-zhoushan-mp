@@ -1,18 +1,21 @@
 <!--page/tabBar/gasonline/index.wxml-->
 <view class="grid">
   <ad unit-id="adunit-a6f5ef70c27ac884"></ad>
-  <view class="table-caption">国内油价</view>
+  <view class="table-caption text-center text-size-40rpx">{{date}} 国内油价</view>
   <view class="table-header-group">
     <view class="grid grid-cols-5">
       <view class="table-cell">省份</view>
-      <view class="table-cell">#92</view>
-      <view class="table-cell">#95</view>
-      <view class="table-cell">#98</view>
-      <view class="table-cell">柴油</view>
+      <view wx:for="{{oilType}}" wx:key="value" wx:for-item="item"
+        class="table-cell {{sortBy===item.value?'bg-red text-white font-bold':''}}" id="{{item.value}}"
+        bindtap="handleSortOil">
+        {{item.label}}
+        <van-icon wx:if="{{sortBy===item.value}}" name="arrow-up" />
+      </view>
     </view>
   </view>
   <view class="">
-    <view class="grid grid-cols-5 {{currentProvince===item.province ? 'bg-green-5 font-bold text-white': ''}}" wx:for="{{gasPriceList}}" wx:key="id" wx:for-item="item" id="{{item.province}}" bindtap="selectProvince">
+    <view class="grid grid-cols-5 {{currentProvince===item.province ? 'bg-green-5 font-bold text-white': ''}}"
+      wx:for="{{gasPriceList}}" wx:key="id" wx:for-item="item" id="{{item.province}}" bindtap="selectProvince">
       <view class="table-cell">{{item.province}}</view>
       <view class="table-cell">{{item.gasoline92}}</view>
       <view class="table-cell">{{item.gasoline95}}</view>
@@ -21,7 +24,7 @@
     </view>
   </view>
   <view class="">
-    <view class="grid grid-cols-5">
+    <view class="grid grid-cols-5 text-blue font-bold">
       <view class="table-cell">Avgs</view>
       <view class="table-cell">{{avg92}}</view>
       <view class="table-cell">{{avg95}}</view>

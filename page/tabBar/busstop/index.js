@@ -1,6 +1,7 @@
 // pages/home/index.js
 const { searchBusStations, getHotBusStops } = require('~/common/api/bus');
 const { searchNearBusLines } = require('~/common/api/crypto');
+const STOP_HISTORY = 'stop_history'
 Page({
 
   /**
@@ -27,7 +28,7 @@ Page({
     historyList.push(currentTarget.dataset.item)
     const newHistoryList = Array.from(new Set(historyList.map(JSON.stringify)), JSON.parse);
     wx.setStorage({
-      key: 'stations-history',
+      key: STOP_HISTORY,
       data: newHistoryList
     })
     this.setData({
@@ -91,7 +92,7 @@ Page({
   onShow() {
     this.fetchData()
     wx.getStorage({
-      'key': 'stations-history',
+      'key': STOP_HISTORY,
       success: (res) => {
         this.setData({
           historyList: res.data,

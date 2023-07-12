@@ -72,8 +72,10 @@ Page({
    */
   onLoad(options) {
     const currentProvince = wx.getStorageSync('currentProvince')
+    const sortBy = wx.getStorageSync('sortBy')
     this.setData({
-      currentProvince
+      currentProvince,
+      sortBy
     })
     this.fetchData()
   },

@@ -15,9 +15,13 @@ if (envVersion === 'develop') {
 }
 
 
+const LINE_HISTORY = 'line_history'
+
+
 module.exports = {
   key,
   baseUrl: host,
   cryptoUrl: cryptoHost,
   envVersion,
+  LINE_HISTORY
 }

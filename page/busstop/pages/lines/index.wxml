@@ -6,12 +6,10 @@
   <view class="absolute bottom-200rpx right-20rpx flex flex-col z-2">
     <t-button theme="primary" icon="refresh" shape="square" size="large" aria-label="刷新" bind:tap="fetchDetail">
     </t-button>
-    <t-button class="mt-20rpx" theme="primary" icon="swap" shape="square" size="large" aria-label="换向"
-      bind:tap="handleExchange"></t-button>
+    <t-button class="mt-20rpx" theme="primary" icon="swap" shape="square" size="large" aria-label="换向" bind:tap="handleExchange"></t-button>
   </view>
   <scroll-view class="w-full flex flex-col flex-1" scroll-y type="list" style="height: 500px;">
-    <view class="mb-10rpx bg-white px-30rpx py-20rpx flex justify-between" wx:for="{{lineList}}" wx:key="id"
-      bindtap="onClick" wx:for-item="item" id="{{item.lineName}}">
+    <view class="mb-10rpx bg-white px-30rpx py-20rpx flex justify-between" wx:for="{{lineList}}" wx:key="id" bindtap="onClick" wx:for-item="item" id="{{item.lineName}}">
       <view class="flex flex-col">
         <view class="text-size-40rpx">{{item.lineName}}</view>
         <view class="flex text-gray-5 text-size-26rpx">

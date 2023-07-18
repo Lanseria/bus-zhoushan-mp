@@ -1,5 +1,4 @@
 {
-  "appid": "wx49db9eb526d437f0",
   "cloudfunctionRoot": "cloudfunctions/",
   "compileType": "miniprogram",
   "condition": {},
@@ -8,7 +7,40 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "libVersion": "2.24.6",
+  "setting": {
+    "autoAudits": false,
+    "babelSetting": {
+      "disablePlugins": [],
+      "ignore": [],
+      "outputPath": ""
+    },
+    "checkInvalidKey": true,
+    "coverView": true,
+    "disableUseStrict": false,
+    "enhance": true,
+    "es6": true,
+    "ignoreDevUnusedFiles": false,
+    "ignoreUploadUnusedFiles": false,
+    "minified": true,
+    "minifyWXML": true,
+    "minifyWXSS": true,
+    "newFeature": false,
+    "nodeModules": false,
+    "packNpmManually": false,
+    "packNpmRelationList": [],
+    "postcss": true,
+    "preloadBackgroundData": false,
+    "showES6CompileOption": false,
+    "showShadowRootInWxmlPanel": true,
+    "uglifyFileName": false,
+    "uploadWithSourceMap": true,
+    "urlCheck": true,
+    "useCompilerPlugins": false,
+    "useIsolateContext": true,
+    "useStaticServer": true,
+    "userConfirmedBundleSwitch": false,
+    "condition": false
+  },
   "packOptions": {
     "ignore": [
       {
@@ -46,39 +78,5 @@
     ],
     "include": []
   },
-  "projectname": "bus-zhoushan-mp",
-  "setting": {
-    "autoAudits": false,
-    "babelSetting": {
-      "disablePlugins": [],
-      "ignore": [],
-      "outputPath": ""
-    },
-    "checkInvalidKey": true,
-    "coverView": true,
-    "disableUseStrict": false,
-    "enhance": true,
-    "es6": true,
-    "ignoreDevUnusedFiles": false,
-    "ignoreUploadUnusedFiles": false,
-    "minified": true,
-    "minifyWXML": true,
-    "minifyWXSS": true,
-    "newFeature": false,
-    "nodeModules": false,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "postcss": true,
-    "preloadBackgroundData": false,
-    "showES6CompileOption": false,
-    "showShadowRootInWxmlPanel": true,
-    "uglifyFileName": false,
-    "uploadWithSourceMap": true,
-    "urlCheck": true,
-    "useCompilerPlugins": false,
-    "useIsolateContext": true,
-    "useStaticServer": true,
-    "userConfirmedBundleSwitch": false,
-    "condition": false
-  }
+  "appid": "wx49db9eb526d437f0"
 }

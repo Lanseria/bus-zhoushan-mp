@@ -1,6 +1,7 @@
 const { queryLine, details, postHotRoute } = require("~/common/api/bus")
 const { defaultRouteDetail } = require("~/common/data")
 const _ = require('~/common/lodash-min')
+const { LINE_HISTORY } = require('~/common/constant')
 let interval = 0
 // page/home/pages/route/index.js
 Page({
@@ -12,7 +13,34 @@ Page({
     id: '',
     routeDetail: defaultRouteDetail,
     upOrDown: 'down',
-    groupsVl: {}
+    groupsVl: {},
+    historyList: [],
+    isCollected: false
+  },
+  handleCollect() {
+    const { routeDetail, upOrDown, id, historyList, isCollected } = this.data
+    const lineItem = {
+      endStation: routeDetail[upOrDown].endStation,
+      lineName: id,
+      startStation: routeDetail[upOrDown].startStation,
+      upOrDown: upOrDown
+    }
+    const idx = historyList.findIndex((m) => m.lineName === lineItem.lineName)
+    if (idx >= 0) {
+      historyList.splice(idx, 1)
+    }
+    if (!isCollected) {
+      historyList.push(lineItem)
+    }
+    const newIsCollected = historyList.findIndex((m) => m.lineName === this.data.id) >= 0
+    wx.setStorage({
+      key: LINE_HISTORY,
+      data: historyList
+    })
+    this.setData({
+      isCollected: newIsCollected,
+      historyList
+    })
   },
   intervalDetail() {
     clearInterval(interval)
@@ -66,9 +94,20 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      id: decodeURIComponent(options.id)
+      id: decodeURIComponent(options.id),
+      upOrDown: decodeURIComponent(options.upOrDown)
     })
     this.fetchData()
+    wx.getStorage({
+      'key': LINE_HISTORY,
+      success: (res) => {
+        const isCollected = res.data.findIndex((m) => m.lineName === this.data.id) >= 0
+        this.setData({
+          historyList: res.data,
+          isCollected
+        })
+      }
+    })
   },
 
   /**

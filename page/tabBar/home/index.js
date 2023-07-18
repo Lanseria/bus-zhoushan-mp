@@ -1,7 +1,7 @@
 // pages/home/index.js
 const { searchBusLines, getHotBusLines } = require('~/common/api/bus');
 const { searchNearBusLines } = require('~/common/api/crypto');
-const LINE_HISTORY = 'line_history'
+const { LINE_HISTORY } = require('~/common/constant')
 Page({
   /**
    * 页面的初始数据
@@ -13,9 +13,9 @@ Page({
     historyList: [],
     hotList: []
   },
-  onNavigate(id) {
+  onNavigate(id, upOrDown = 'down') {
     wx.navigateTo({
-      url: `/page/home/pages/route/index?id=${id}`,
+      url: `/page/home/pages/route/index?id=${id}&upOrDown=${upOrDown}`,
     })
   },
   onHotClick({ currentTarget }) {
@@ -23,18 +23,20 @@ Page({
   },
   onClick({ currentTarget }) {
     const { historyList } = this.data
-    console.log(currentTarget.dataset.item)
+    const idx = historyList.findIndex((m) => m.lineName === currentTarget.dataset.item.lineName)
+    if (idx >= 0) {
+      historyList.splice(idx, 1)
+    }
     historyList.push(currentTarget.dataset.item)
-    const newHistoryList = Array.from(new Set(historyList.map(JSON.stringify)), JSON.parse);
     wx.setStorage({
       key: LINE_HISTORY,
-      data: newHistoryList
+      data: historyList
     })
     this.setData({
-      history: newHistoryList,
+      history: historyList,
       value: ''
     })
-    this.onNavigate(currentTarget.id)
+    this.onNavigate(currentTarget.id, currentTarget.dataset.item.upOrDown)
   },
   async fetchSearchBuslines() {
     const data = await searchBusLines(this.data.value)

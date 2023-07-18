@@ -25,13 +25,13 @@ Page({
       })
     }
   },
-  onNavigate(id) {
+  onNavigate(id, upOrDown = 'down') {
     wx.navigateTo({
-      url: `/page/home/pages/route/index?id=${id}`,
+      url: `/page/home/pages/route/index?id=${id}&upOrDown=${upOrDown}`,
     })
   },
   onClick({ currentTarget }) {
-    this.onNavigate(currentTarget.id)
+    this.onNavigate(currentTarget.id, this.data.direction)
   },
   async fetchDetail() {
     const res = await getVehicleDetails(this.data.lineIds, this.data.stationIds)

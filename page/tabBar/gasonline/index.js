@@ -52,8 +52,7 @@ Page({
     })
   },
   async fetchData() {
-    const data = await queryGasOnline()
-    const rawData = data.data
+    const rawData = await queryGasOnline()
     const avg92 = (rawData.map(m => +m.gasoline92).reduce((x, y) => x + y, 0) / 31).toFixed(2)
     const avg95 = (rawData.map(m => +m.gasoline95).reduce((x, y) => x + y, 0) / 31).toFixed(2)
     const avg98 = (rawData.map(m => +m.gasoline98).reduce((x, y) => x + y, 0) / 31).toFixed(2)

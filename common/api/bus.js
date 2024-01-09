@@ -1,5 +1,5 @@
 const { api } = require('./index')
-const prefixUrl = 'http://192.168.31.148:3000'
+const prefixUrl = 'http://192.168.31.32:3000'
 // const prefixUrl = 'https://s8zygv.laf.run'
 export const getVehicleDetails = (lineIds, stationIds) => {
   return api({

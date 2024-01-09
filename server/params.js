@@ -42,7 +42,7 @@ async function searchStation(stationName) {
 }
 
 
-async function getVehicleDetails(lineIds, stationIds) {
+async function getVehicleDetailsParams(lineIds, stationIds) {
   const headers = {
     'Accept': 'application/json, text/plain, */*',
     'Accept-Language': 'zh-CN,zh;q=0.9',
@@ -85,5 +85,5 @@ async function getVehicleDetails(lineIds, stationIds) {
 
 module.exports = {
   searchStation,
-  getVehicleDetails
+  getVehicleDetailsParams
 }

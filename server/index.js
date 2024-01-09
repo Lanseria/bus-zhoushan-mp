@@ -1,15 +1,25 @@
 const Koa = require('koa');
+const Router = require('koa-router');
+const bodyParser = require('koa-bodyparser');
 const app = new Koa();
+const router = new Router();
 const buslineData = require('./buslines.json')
 const busstationData = require('./busstation.json')
 const busnewsData = require('./busnews.json')
 const { MongoClient } = require('mongodb');
-const { searchStation } = require('./params');
+const { searchStation, getVehicleDetailsParams } = require('./params');
 const uri = 'mongodb://192.168.31.32:27017'; // MongoDB连接URI
 const dbName = 'mydatabase'; // 数据库名称
 
+app.use(bodyParser()); // 使用koa-bodyparser中间件解析请求体
+async function getDb() {
+  const client = new MongoClient(uri);
+  await client.connect(); // 连接到MongoDB
+  const db = client.db(dbName);
+  return db
+}
 // demo insert data
-async function otherRouteHandler(ctx, db) {
+async function otherRouteHandler(ctx) {
   // 插入公交数据
   // const collectionName = 'bus_lines'; // 集合名称
   // const collection = db.collection(collectionName);
@@ -23,6 +33,7 @@ async function otherRouteHandler(ctx, db) {
   // console.log(`${result.insertedCount} busstationData inserted.`);
   // ctx.body = result;
   // 插入公交新闻数据
+  const db = await getDb()
   const collectionName = 'bus_news'; // 集合名称
   const collection = db.collection(collectionName);
   const result = await collection.insertMany(busnewsData);
@@ -31,7 +42,8 @@ async function otherRouteHandler(ctx, db) {
 }
 
 
-async function getHotBusLines(ctx, db) {
+async function getHotBusLines(ctx) {
+  const db = await getDb()
   const collectionName = 'bus_lines'; // 集合名称
   const collection = db.collection(collectionName);
   // const result = await collection.insertMany(buslineData);
@@ -41,7 +53,8 @@ async function getHotBusLines(ctx, db) {
   ctx.body = result;
 }
 
-async function getHotBusStops(ctx, db) {
+async function getHotBusStops(ctx) {
+  const db = await getDb()
   const collectionName = 'bus_station'; // 集合名称
   const collection = db.collection(collectionName);
   // const result = await collection.insertMany(buslineData);
@@ -51,7 +64,7 @@ async function getHotBusStops(ctx, db) {
   ctx.body = result;
 }
 
-async function getLinesByStation(ctx, db) {
+async function getLinesByStation(ctx) {
   console.log(ctx.query.stationName)
   const stationName = decodeURIComponent(ctx.query.stationName)
   console.log(stationName)
@@ -59,14 +72,18 @@ async function getLinesByStation(ctx, db) {
   ctx.body = res.data
 }
 
-async function getVehicleDetails(ctx, db) {
-  const lineIds = decodeURIComponent(ctx.query.lineIds)
-  const stationIds = decodeURIComponent(ctx.query.stationIds)
-  const res = await getVehicleDetails(lineIds, stationIds)
+async function getVehicleDetails(ctx) {
+  const lineIds = ctx.request.query.lineIds;
+  const lineIdsArray = lineIds.split(',');
+  const stationIds = ctx.request.query.stationIds;
+  const stationIdsArray = stationIds.split(',');
+
+  const res = await getVehicleDetailsParams(lineIdsArray, stationIdsArray)
   ctx.body = res.data
 }
 
-async function postHotBusStop(ctx, db) {
+async function postHotBusStop(ctx) {
+  const db = await getDb()
   const collectionName = 'bus_station'; // 集合名称
   const collection = db.collection(collectionName);
   const stationName = ctx.query.stationName
@@ -77,9 +94,12 @@ async function postHotBusStop(ctx, db) {
     return 'Invalid bus stop name'
   }
   if (stationName) {
-    const existingDoc = await collection.where({
+    // const existingDoc = await collection.where({
+    //   stationName: stationName
+    // }).getOne()
+    const existingDoc = await collection.findOne({
       stationName: stationName
-    }).getOne()
+    })
     if (existingDoc.data) {
       console.log(existingDoc.data)
       await collection.doc(existingDoc.data._id).set({
@@ -92,7 +112,8 @@ async function postHotBusStop(ctx, db) {
         stationName: stationName,
         count: 1
       }
-      const result = await collection.add(newDoc)
+
+      const result = await collection.insertOne(newDoc)
       return 'add success'
     }
   } else {
@@ -100,7 +121,8 @@ async function postHotBusStop(ctx, db) {
   }
 }
 
-async function postHotRoute(ctx, db) {
+async function postHotRoute(ctx) {
+  const db = await getDb()
   const collectionName = 'bus_lines'; // 集合名称
   const collection = db.collection(collectionName);
   const busLineName = ctx.query.busLineName
@@ -138,7 +160,8 @@ async function postHotRoute(ctx, db) {
   }
 }
 
-async function queryBusNews(ctx, db) {
+async function queryBusNews(ctx) {
+  const db = await getDb()
   const collectionName = 'bus_news'; // 集合名称
   const collection = db.collection(collectionName);
   // const result = await collection.insertMany(buslineData);
@@ -148,46 +171,56 @@ async function queryBusNews(ctx, db) {
   ctx.body = result;
 }
 
-app.use(async (ctx, next) => {
-  const client = new MongoClient(uri);
+router.get('/getHotBusLines', getHotBusLines)
+router.get('/getHotBusStops', getHotBusStops)
+router.get('/getLinesByStation', getLinesByStation)
+router.get('/getVehicleDetails', getVehicleDetails)
+router.get('/postHotBusStop', postHotBusStop)
+router.post('/postHotRoute', postHotRoute)
+router.get('/queryBusNews', queryBusNews)
 
-  try {
-    await client.connect(); // 连接到MongoDB
-    const db = client.db(dbName);
-    const { path } = ctx.request;
-    // 根据请求路径调用不同的控制器
-    if (path === '/getHotBusLines') {
-      await getHotBusLines(ctx, db);
-    }
-    else if (path === '/getHotBusStops') {
-      await getHotBusStops(ctx, db)
-    }
-    else if (path === '/getLinesByStation') {
-      await getLinesByStation(ctx, db)
-    }
-    else if (path === '/getVehicleDetails') {
-      await getVehicleDetails(ctx, db)
-    }
-    else if (path === '/postHotBusStop') {
-      await postHotBusStop(ctx, db)
-    }
-    else if (path === '/postHotRoute') {
-      await postHotRoute(ctx, db)
-    }
-    else if (path === '/queryBusNews') {
-      await queryBusNews(ctx, db)
-    }
-    else {
-      // await otherRouteHandler(ctx, db);
-    }
-    await next(); // 继续处理请求
+app.use(router.routes()); // 使用koa-router中间件处理路由
 
-  } catch (error) {
-    console.log('Error:', error);
-  } finally {
-    await client.close(); // 关闭MongoDB连接
-  }
-});
+// app.use(async (ctx, next) => {
+//   const client = new MongoClient(uri);
+
+//   try {
+//     await client.connect(); // 连接到MongoDB
+//     const db = client.db(dbName);
+//     const { path } = ctx.request;
+//     // 根据请求路径调用不同的控制器
+//     if (path === '/getHotBusLines') {
+//       await getHotBusLines(ctx, db);
+//     }
+//     else if (path === '/getHotBusStops') {
+//       await getHotBusStops(ctx, db)
+//     }
+//     else if (path === '/getLinesByStation') {
+//       await getLinesByStation(ctx, db)
+//     }
+//     else if (path === '/getVehicleDetails') {
+//       await getVehicleDetails(ctx, db)
+//     }
+//     else if (path === '/postHotBusStop') {
+//       await postHotBusStop(ctx, db)
+//     }
+//     else if (path === '/postHotRoute') {
+//       await postHotRoute(ctx, db)
+//     }
+//     else if (path === '/queryBusNews') {
+//       await queryBusNews(ctx, db)
+//     }
+//     else {
+//       // await otherRouteHandler(ctx, db);
+//     }
+//     await next(); // 继续处理请求
+
+//   } catch (error) {
+//     console.log('Error:', error);
+//   } finally {
+//     await client.close(); // 关闭MongoDB连接
+//   }
+// });
 
 app.listen(3000, '0.0.0.0', () => {
   console.log('Server started on port 3000');

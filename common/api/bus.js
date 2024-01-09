@@ -1,29 +1,30 @@
 const { api } = require('./index')
-
+const prefixUrl = 'http://192.168.31.148:3000'
+// const prefixUrl = 'https://s8zygv.laf.run'
 export const getVehicleDetails = (lineIds, stationIds) => {
   return api({
-    url: `https://s8zygv.laf.run/getVehicleDetails?lineIds=${lineIds}&stationIds=${stationIds}`,
+    url: `${prefixUrl}/getVehicleDetails?lineIds=${lineIds}&stationIds=${stationIds}`,
     method: 'GET',
   })
 }
 
 export const searchBusLinesByStation = (name) => {
   return api({
-    url: `https://s8zygv.laf.run/getLinesByStation?stationName=${name}`,
+    url: `${prefixUrl}/getLinesByStation?stationName=${name}`,
     method: 'GET',
   })
 }
 
 export const searchBusLines = (name) => {
   return api({
-    url: `https://s8zygv.laf.run/searchBusLines?busLineName=${name}`,
+    url: `${prefixUrl}/searchBusLines?busLineName=${name}`,
     method: 'GET',
   })
 }
 
 export const searchBusStations = (name) => {
   return api({
-    url: `https://s8zygv.laf.run/searchStation?stationName=${name}`,
+    url: `${prefixUrl}/searchStation?stationName=${name}`,
     method: 'GET',
   })
 }
@@ -47,42 +48,42 @@ export const details = (lineId) => {
 
 export const queryNewList = () => {
   return api({
-    url: `https://s8zygv.laf.run/queryBusNews`,
+    url: `${prefixUrl}/queryBusNews`,
     method: 'GET',
   })
 }
 
 export const postHotRoute = (name) => {
   return api({
-    url: `https://s8zygv.laf.run/postHotRoute?busLineName=${name}`,
+    url: `${prefixUrl}/postHotRoute?busLineName=${name}`,
     method: 'GET',
   })
 }
 
 export const postHotBusStop = (name) => {
   return api({
-    url: `https://s8zygv.laf.run/postHotBusStop?stationName=${name}`,
+    url: `${prefixUrl}/postHotBusStop?stationName=${name}`,
     method: 'GET',
   })
 }
 
 export const getHotBusLines = () => {
   return api({
-    url: `https://s8zygv.laf.run/getHotBusLines`,
+    url: `${prefixUrl}/getHotBusLines`,
     method: 'GET',
   })
 }
 
 export const getHotBusStops = () => {
   return api({
-    url: `https://s8zygv.laf.run/getHotBusStops`,
+    url: `${prefixUrl}/getHotBusStops`,
     method: 'GET',
   })
 }
 
 export const queryGasOnline = () => {
   return api({
-    url: `https://s8zygv.laf.run/queryGasOnline`,
+    url: `${prefixUrl}/queryGasOnline`,
     method: 'GET',
   })
 }
